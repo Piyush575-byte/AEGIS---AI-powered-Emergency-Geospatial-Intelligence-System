@@ -1,0 +1,8 @@
+{
+  "name": "aegis",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm --prefix apps/web install && npm --prefix apps/web run build && node -e \"const fs=require('fs'); fs.cpSync('apps/web/dist', 'dist', {recursive: true});\""
+  }
+}

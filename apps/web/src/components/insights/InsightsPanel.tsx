@@ -16,55 +16,55 @@ function InsightCard({ data, onAction }: InsightCardProps) {
   const isHigh = data.priority === 'high';
 
   return (
-    <div className={`p-3.5 rounded-xl border bg-white shadow-xs flex flex-col gap-2.5 transition-all ${
+    <div className={`p-4 rounded-xl border bg-white shadow-xs flex flex-col gap-3 transition-all ${
       isCritical
-        ? 'border-l-4 border-l-[#B42318] border-[#FECACA] bg-[#FEF2F2]/30'
+        ? 'border-l-4 border-l-[#B42318] border-red-200 bg-red-50/20'
         : isHigh
-        ? 'border-l-4 border-l-[#B54708] border-[#FEDF89] bg-[#FFFAEB]/30'
-        : 'border-l-4 border-l-[#2563A6] border-[#D9E1EA]'
+        ? 'border-l-4 border-l-[#B54708] border-amber-200 bg-amber-50/20'
+        : 'border-l-4 border-l-[#1D5B99] border-slate-200'
     }`}>
-      {/* 1. Header: Badge, Title & Freshness */}
-      <div className="flex items-start justify-between gap-2">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
+      {/* 1. Header: Severity Badge, Title & Verification Time */}
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex items-center gap-2.5 flex-wrap">
+          <span className={`px-2.5 py-0.5 rounded text-xs font-semibold ${
             isCritical
-              ? 'bg-[#FEF2F2] text-[#B42318] border border-[#FECACA]'
+              ? 'bg-red-100 text-red-900 border border-red-200'
               : isHigh
-              ? 'bg-[#FFFAEB] text-[#B54708] border border-[#FEDF89]'
-              : 'bg-[#EFF6FF] text-[#2563A6] border border-[#BFDBFE]'
+              ? 'bg-amber-100 text-amber-900 border border-amber-200'
+              : 'bg-blue-100 text-blue-900 border border-blue-200'
           }`}>
-            {isCritical ? '● Critical' : isHigh ? '▲ High' : 'Notice'}
+            {isCritical ? '● Critical severity' : isHigh ? '▲ High priority' : 'Notice'}
           </span>
-          <h4 className="text-xs font-extrabold text-black leading-snug">
+          <h4 className="text-[16px] font-bold text-[#172033] leading-snug">
             {data.title}
           </h4>
         </div>
-        <span className="text-[10.5px] text-black font-bold font-mono shrink-0 whitespace-nowrap">
+        <span className="text-[13px] text-slate-600 font-medium font-mono tabular-nums shrink-0 whitespace-nowrap">
           {data.freshness}
         </span>
       </div>
 
-      {/* 2. Narrative Content: Incident & Operational Impact */}
-      <div className="text-[11.5px] space-y-1.5 leading-relaxed">
-        <div className="text-black">
-          <strong className="text-black font-extrabold mr-1">Incident:</strong>
-          {data.whatHappened}
+      {/* 2. Narrative Content: What Happened & Operational Impact */}
+      <div className="text-[14px] space-y-2 leading-relaxed text-[#172033]">
+        <div>
+          <span className="font-semibold text-slate-900 mr-1.5">What happened:</span>
+          <span className="text-slate-800">{data.whatHappened}</span>
         </div>
-        <div className="text-black">
-          <strong className="text-black font-extrabold mr-1">Operational Impact:</strong>
-          {data.whyItMatters}
+        <div>
+          <span className="font-semibold text-slate-900 mr-1.5">Operational impact:</span>
+          <span className="text-slate-800">{data.whyItMatters}</span>
         </div>
       </div>
 
-      {/* 3. Footer: Source & Clean Action Button */}
-      <div className="pt-2 border-t border-black/10 flex items-center justify-between gap-2">
-        <span className="text-[10px] text-black font-semibold font-mono truncate" title={data.source}>
+      {/* 3. Footer: Source Attribution & Direct Action Button */}
+      <div className="pt-2.5 border-t border-slate-200 flex items-center justify-between gap-3">
+        <span className="text-[13px] text-slate-600 font-medium truncate" title={data.source}>
           Source: {data.source}
         </span>
         <button
           type="button"
           onClick={handleClick}
-          className="px-3 py-1 rounded-lg text-xs font-bold text-black bg-white border border-black/20 hover:bg-black/5 transition shadow-xs whitespace-nowrap cursor-pointer shrink-0"
+          className="px-4 py-2 rounded-lg text-sm font-semibold text-[#172033] bg-white border border-slate-300 hover:bg-slate-50 transition shadow-xs whitespace-nowrap cursor-pointer shrink-0 min-h-[38px]"
         >
           {data.actionLabel}
         </button>
@@ -80,18 +80,18 @@ interface InsightsPanelProps {
 
 export default function InsightsPanel({ insights, onAction }: InsightsPanelProps) {
   return (
-    <div className="space-y-2.5">
+    <div className="space-y-3">
       <div className="flex items-center justify-between pb-1">
-        <div className="text-[10px] font-extrabold uppercase tracking-wider text-black flex items-center gap-1.5">
-          <span>Operational Situation Alerts</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626]"></span>
+        <div className="text-[18px] font-bold text-[#172033] flex items-center gap-2">
+          <span>Operational alerts</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
         </div>
-        <span className="text-[9.5px] font-mono text-black font-bold bg-black/5 px-2 py-0.5 rounded border border-black/15">
-          DERIVED SENSOR DATA
+        <span className="text-xs font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
+          Derived sensor data
         </span>
       </div>
 
-      <div className="flex flex-col gap-2.5">
+      <div className="flex flex-col gap-3">
         {insights.map((insight) => (
           <InsightCard key={insight.id} data={insight} onAction={onAction} />
         ))}
@@ -99,4 +99,3 @@ export default function InsightsPanel({ insights, onAction }: InsightsPanelProps
     </div>
   );
 }
-

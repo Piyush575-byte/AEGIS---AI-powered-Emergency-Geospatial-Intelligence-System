@@ -235,33 +235,33 @@ export default function Dashboard() {
       {/* 0. LIVE CRITICAL INCIDENT BANNER (top edge, full width)       */}
       {/* ============================================================ */}
       {showIncidentBanner && incident && (
-        <div className="absolute top-0 inset-x-0 z-[1500] flex items-center justify-between gap-3 bg-[#7F1D1D] text-white px-4 py-2 shadow-lg">
-          <div className="flex items-center gap-2 min-w-0">
-            <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/20 shrink-0">
-              <AlertTriangle className="w-3 h-3 text-red-200" />
+        <div className="absolute top-0 inset-x-0 z-[1500] flex items-center justify-between gap-3 bg-[#7F1D1D] text-white px-4 py-2.5 shadow-lg">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-white/20 shrink-0">
+              <AlertTriangle className="w-3.5 h-3.5 text-red-200" />
             </span>
-            <span className="text-[11px] font-black uppercase tracking-widest text-red-200 shrink-0">CRITICAL INCIDENT</span>
-            <span className="text-xs font-semibold truncate">
-              {incident.incident_type?.replace(/_/g, ' ').toUpperCase()} · {incident.description}
+            <span className="text-xs font-bold text-red-200 shrink-0">Critical incident alert</span>
+            <span className="text-sm font-semibold truncate text-white">
+              {incident.incident_type?.replace(/_/g, ' ')} · {incident.description}
             </span>
-            <span className="text-[10px] font-mono text-red-300 shrink-0">
+            <span className="text-xs font-mono tabular-nums text-red-200 shrink-0">
               {new Date(incident.reported_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} IST
             </span>
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <Link
               to="/ddma"
-              className="text-[11px] font-bold bg-white/20 hover:bg-white/30 px-2.5 py-1 rounded transition"
+              className="text-xs font-semibold bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-lg transition min-h-[36px] flex items-center"
             >
               Open DDMA →
             </Link>
             <button
               type="button"
               onClick={() => setIncidentBannerDismissed(incident.id)}
-              className="p-1 rounded hover:bg-white/20 transition"
+              className="p-1.5 rounded-lg hover:bg-white/20 transition cursor-pointer"
               title="Dismiss banner"
             >
-              <X className="w-3.5 h-3.5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -270,7 +270,7 @@ export default function Dashboard() {
       {/* ============================================================ */}
       {/* 1. PRIMARY MAP WORKSPACE (Occupies 100% of the canvas)        */}
       {/* ============================================================ */}
-      <div className={`absolute inset-0 z-0 ${showIncidentBanner ? 'top-9' : ''}`}>
+      <div className={`absolute inset-0 z-0 ${showIncidentBanner ? 'top-10' : ''}`}>
         <GISMap
           routeR104Status={displayedRouteR104Status}
           activeVectorType={displayedActiveVectorType}
@@ -281,43 +281,43 @@ export default function Dashboard() {
       {/* 2. FLOATING STATE SITUATION OPERATIONAL PANEL                */}
       {/* ============================================================ */}
       <div 
-        className={`absolute left-3 z-[400] w-[340px] sm:w-[360px] max-w-[calc(100vw-24px)] flex flex-col aegis-floating-card overflow-hidden ${showIncidentBanner ? 'top-12' : 'top-3'}`}
-        style={{ maxHeight: isPanelCollapsed ? '46px' : 'calc(100vh - 215px)' }}
+        className={`absolute left-3 z-[400] w-[390px] sm:w-[440px] max-w-[calc(100vw-24px)] flex flex-col aegis-floating-card overflow-hidden ${showIncidentBanner ? 'top-12' : 'top-3'}`}
+        style={{ maxHeight: isPanelCollapsed ? '52px' : 'calc(100vh - 215px)' }}
         onWheel={(e) => e.stopPropagation()}
       >
         {/* Card Header */}
-        <div className="px-3.5 py-2.5 border-b border-black/10 flex items-center justify-between shrink-0 bg-white/40 backdrop-blur-xs">
-          <div className="flex items-center gap-2 min-w-0">
-            <span className={`w-2 h-2 rounded-full shrink-0 ${
+        <div className="px-4 py-3 border-b border-slate-200/90 flex items-center justify-between shrink-0 bg-white/95 backdrop-blur-md">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${
               liveIncidentActive ? 'bg-[#DC2626] animate-pulse'
               : liveRecommendationPending || isIncidentActive ? 'bg-amber-500'
               : isPendingDecision ? 'bg-amber-500'
               : 'bg-[#027A48]'
             }`}></span>
             <div className="min-w-0">
-              <span className="text-[9px] font-extrabold uppercase tracking-wider text-black block leading-none">
-                State Operational Overview
+              <span className="text-xs font-semibold text-slate-600 block leading-tight">
+                State operational overview
               </span>
-              <span className="text-[11px] font-extrabold text-black tracking-tight truncate block">
-                Kerala SDMA
+              <span className="text-sm font-bold text-slate-900 tracking-tight truncate block">
+                Kerala SDMA · State Operations
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-1.5 shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
             {/* Live connectivity indicator */}
             {isLive
-              ? <span title="Live backend connected" className="flex items-center gap-1 text-[9px] font-bold text-[#027A48]">
-                  <Wifi className="w-3 h-3" /><span className="hidden sm:inline">LIVE</span>
+              ? <span title="Live backend connected" className="flex items-center gap-1 text-xs font-bold text-[#027A48]">
+                  <Wifi className="w-3.5 h-3.5" /><span className="hidden sm:inline">Live</span>
                 </span>
               : liveError
-              ? <span title={liveError} className="flex items-center gap-1 text-[9px] font-bold text-amber-600">
-                  <WifiOff className="w-3 h-3" /><span className="hidden sm:inline">OFFLINE</span>
+              ? <span title={liveError} className="flex items-center gap-1 text-xs font-bold text-amber-700">
+                  <WifiOff className="w-3.5 h-3.5" /><span className="hidden sm:inline">Offline</span>
                 </span>
               : null
             }
             <button
               onClick={() => setIsPanelCollapsed(!isPanelCollapsed)}
-              className="text-black hover:text-black p-1 rounded-md hover:bg-black/5 transition cursor-pointer"
+              className="text-slate-700 hover:text-slate-900 p-1.5 rounded-lg hover:bg-slate-100 transition cursor-pointer"
               title={isPanelCollapsed ? 'Expand panel' : 'Collapse panel'}
               aria-label={isPanelCollapsed ? 'Expand panel' : 'Collapse panel'}
             >
@@ -328,66 +328,66 @@ export default function Dashboard() {
 
         {/* Panel Body */}
         {!isPanelCollapsed && (
-          <div className="overflow-y-auto overscroll-contain p-3 space-y-2.5 text-xs text-black flex-1">
+          <div className="overflow-y-auto overscroll-contain p-4 space-y-3.5 text-sm text-slate-800 flex-1">
             {/* 2A. Compact State Situation Metrics */}
-            <div className="space-y-1">
-              <div className="flex items-center justify-between text-[10px] text-black">
-                <span className="font-extrabold text-black">Statewide Situation</span>
-                <span className="font-mono text-[9px] text-black font-semibold">13 Sept 2026</span>
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between text-xs text-slate-600 pb-0.5">
+                <span className="font-bold text-slate-800">Statewide situation</span>
+                <span className="font-mono tabular-nums text-xs text-slate-600 font-semibold">13 Sept 2026</span>
               </div>
 
-              <div className="grid grid-cols-2 gap-1.5 pt-1">
+              <div className="grid grid-cols-2 gap-2">
                 {/* Metric 1: High-Risk Areas — live from backend hazards */}
-                <div className={`p-1.5 rounded-xl border ${
+                <div className={`p-2.5 rounded-xl border ${
                   liveHighRiskZones && liveHighRiskZones > 5
-                    ? 'bg-rose-50/70 border-rose-200/80'
-                    : 'glass-card-subtle'
+                    ? 'bg-rose-50/90 border-rose-300'
+                    : 'bg-white/95 border-slate-200/90 shadow-2xs'
                 }`}>
-                  <div className="text-[9px] font-bold text-black">High-Risk Areas</div>
-                  <div className={`text-sm font-extrabold mt-0.5 ${
-                    liveHighRiskZones && liveHighRiskZones > 5 ? 'text-[#B42318]' : 'text-black'
+                  <div className="text-xs font-semibold text-slate-700">High-risk areas</div>
+                  <div className={`text-2xl font-bold tabular-nums mt-1 ${
+                    liveHighRiskZones && liveHighRiskZones > 5 ? 'text-[#B42318]' : 'text-slate-900'
                   }`}>
                     {liveHighRiskZones ?? (currentStep >= 2 ? '12' : '8')}{' '}
-                    <span className="text-[10.5px] font-medium text-black">zones</span>
+                    <span className="text-xs font-medium text-slate-600">zones</span>
                   </div>
                 </div>
 
                 {/* Metric 2: Vulnerable Households */}
-                <div className="p-1.5 rounded-xl glass-card-subtle">
-                  <div className="text-[9px] font-bold text-black">Vulnerable HH</div>
-                  <div className="text-sm font-extrabold text-black mt-0.5">
-                    4,827 <span className="text-[9px] font-medium text-black">families</span>
+                <div className="p-2.5 rounded-xl bg-white/95 border border-slate-200/90 shadow-2xs">
+                  <div className="text-xs font-semibold text-slate-700">Vulnerable households</div>
+                  <div className="text-2xl font-bold tabular-nums text-slate-900 mt-1">
+                    4,827 <span className="text-xs font-medium text-slate-600">families</span>
                   </div>
                 </div>
 
                 {/* Metric 3: Shelter Capacity — live from backend */}
-                <div className="p-1.5 rounded-xl glass-card-subtle">
-                  <div className="text-[9px] font-bold text-black">Shelter Capacity</div>
-                  <div className="text-sm font-extrabold text-black mt-0.5">
+                <div className="p-2.5 rounded-xl bg-white/95 border border-slate-200/90 shadow-2xs">
+                  <div className="text-xs font-semibold text-slate-700">Shelter capacity</div>
+                  <div className="text-2xl font-bold tabular-nums text-slate-900 mt-1">
                     {liveShelterCapacity !== null
                       ? liveShelterCapacity.toLocaleString()
                       : '18,420'}{' '}
-                    <span className="text-[10.5px] font-medium text-black">available</span>
+                    <span className="text-xs font-medium text-slate-600">available</span>
                   </div>
                 </div>
 
                 {/* Metric 4: Capacity Gap — live from backend */}
-                <div className={`p-1.5 rounded-xl border ${
+                <div className={`p-2.5 rounded-xl border ${
                   (liveCapacityGap ?? 1240) > 0
-                    ? 'bg-amber-50/70 border-amber-200/80'
-                    : 'bg-emerald-50/70 border-emerald-200/80'
+                    ? 'bg-amber-50/90 border-amber-300'
+                    : 'bg-emerald-50/90 border-emerald-300'
                 }`}>
-                  <div className={`text-[9px] font-bold flex items-center justify-between ${
+                  <div className={`text-xs font-semibold flex items-center justify-between ${
                     (liveCapacityGap ?? 1240) > 0 ? 'text-[#B54708]' : 'text-[#027A48]'
                   }`}>
-                    <span>Capacity Gap</span>
-                    <span>{(liveCapacityGap ?? 1240) > 0 ? '▲ Attention' : '✓ OK'}</span>
+                    <span>Capacity gap</span>
+                    <span className="text-xs font-bold">{(liveCapacityGap ?? 1240) > 0 ? '▲ Attention' : '✓ OK'}</span>
                   </div>
-                  <div className={`text-sm font-extrabold mt-0.5 ${
+                  <div className={`text-2xl font-bold tabular-nums mt-1 ${
                     (liveCapacityGap ?? 1240) > 0 ? 'text-[#B54708]' : 'text-[#027A48]'
                   }`}>
                     {(liveCapacityGap ?? 1240).toLocaleString()}{' '}
-                    <span className="text-[9px] font-medium">
+                    <span className="text-xs font-medium">
                       {(liveCapacityGap ?? 1240) > 0 ? 'deficit' : 'surplus'}
                     </span>
                   </div>
@@ -397,38 +397,38 @@ export default function Dashboard() {
 
             {/* 2B. Pending State Decision / Concurrence Section */}
             {/* Priority: live backend recommendation > mock step state */}
-            <div className="pt-1">
+            <div>
               {liveRecommendationPending && recommendation ? (
                 /* ── LIVE: Real pending recommendation from backend ── */
-                <div className="p-3 rounded-xl bg-[#FFFAEB] border border-[#FEDF89] space-y-2 shadow-xs">
+                <div className="p-3.5 rounded-xl bg-[#FFFAEB] border border-[#FEDF89] space-y-2 shadow-xs">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#B54708] flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] animate-pulse"></span>
-                      Pending Statutory Action
+                    <span className="text-xs font-bold text-[#B54708] flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse"></span>
+                      Pending statutory action
                     </span>
-                    <span className="text-[10px] font-mono font-bold text-[#B54708] bg-[#FEF08A] px-1.5 py-0.5 rounded flex items-center gap-1">
-                      <Radio className="w-2.5 h-2.5" /> LIVE
+                    <span className="text-xs font-mono font-bold text-[#B54708] bg-[#FEF08A] px-2 py-0.5 rounded flex items-center gap-1">
+                      <Radio className="w-3 h-3" /> Live
                     </span>
                   </div>
                   <div>
-                    <h4 className="text-xs font-extrabold text-[#7A271A]">
-                      Wayanad DDMA · Emergency Relocation Recommendation
+                    <h4 className="text-sm font-bold text-[#7A271A]">
+                      Wayanad DDMA · Emergency relocation recommendation
                     </h4>
-                    <p className="text-[11px] text-black font-semibold mt-0.5 leading-snug">
+                    <p className="text-sm text-slate-800 font-normal mt-1 leading-relaxed">
                       {recommendation.summary || 'Emergency rerouting recommendation requires state concurrence. Plan V2 pending executive approval.'}
                     </p>
                     {recommendation.recommended_shelter?.name && (
-                      <p className="text-[11px] font-bold text-[#7A271A] mt-1">
+                      <p className="text-xs font-bold text-[#7A271A] mt-1.5 tabular-nums">
                         Proposed: {recommendation.affected_habitation?.population ?? '—'} evacuees →{' '}
                         {recommendation.recommended_shelter.name}
                         {recommendation.recommended_route?.code ? ` via ${recommendation.recommended_route.code}` : ''}
                       </p>
                     )}
                   </div>
-                  <div className="flex items-center gap-2 pt-1">
+                  <div className="pt-1.5">
                     <Link
                       to="/ddma"
-                      className="flex-1 py-1.5 px-3 rounded-lg bg-[#2563A6] text-white text-xs font-semibold text-center hover:bg-[#1D4F80] transition shadow-xs"
+                      className="w-full min-h-[44px] px-3.5 rounded-lg bg-[#2563A6] text-white text-sm font-semibold flex items-center justify-center hover:bg-[#1D4F80] transition shadow-xs"
                     >
                       Review in Wayanad DDMA →
                     </Link>
@@ -436,38 +436,38 @@ export default function Dashboard() {
                 </div>
               ) : liveIncidentActive && !liveRecommendationPending ? (
                 /* ── LIVE: Incident detected, decision engine running ── */
-                <div className="p-3 rounded-xl bg-[#FFF1F2] border border-[#FECDD3] space-y-1.5">
+                <div className="p-3.5 rounded-xl bg-[#FFF1F2] border border-[#FECDD3] space-y-2">
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] animate-pulse"></span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#9F1239]">Critical Incident Active</span>
+                    <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse"></span>
+                    <span className="text-xs font-bold text-[#9F1239]">Critical incident active</span>
                   </div>
-                  <p className="text-[11px] text-black font-semibold leading-snug">
+                  <p className="text-sm text-slate-800 font-normal leading-relaxed">
                     AEGIS decision engine processing field report. Recommendation pending.
                   </p>
                   <Link
                     to="/ddma"
-                    className="inline-flex text-xs font-semibold text-[#DC2626] hover:underline"
+                    className="inline-flex text-sm font-semibold text-[#DC2626] hover:underline"
                   >
                     Monitor in DDMA Command Center →
                   </Link>
                 </div>
               ) : isPendingDecision ? (
                 /* ── DEMO: Manual step-control driven pending action ── */
-                <div className="p-3 rounded-xl bg-amber-50/75 border border-amber-200/80 space-y-2 shadow-xs backdrop-blur-xs">
+                <div className="p-3.5 rounded-xl bg-amber-50/90 border border-amber-300 space-y-2.5 shadow-xs">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#B54708] flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
-                      Pending Statutory Action
+                    <span className="text-xs font-bold text-[#B54708] flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
+                      Pending statutory action
                     </span>
-                    <span className="text-[10px] font-mono font-bold text-[#B54708] bg-[#FEF08A] px-1.5 py-0.2 rounded">
+                    <span className="text-xs font-mono tabular-nums font-bold text-[#B54708] bg-[#FEF08A] px-2 py-0.5 rounded">
                       1 Pending
                     </span>
                   </div>
                   <div>
-                    <h4 className="text-xs font-extrabold text-[#7A271A]">
-                      Wayanad DDMA · Relocation Plan {displayPlanVersion} {displayPlanVersion === 'V1' && currentStep === 9 ? '· Proposed V2 Advisory' : `(${activePlan.id})`}
+                    <h4 className="text-sm font-bold text-[#7A271A]">
+                      Wayanad DDMA · Relocation Plan {displayPlanVersion} {displayPlanVersion === 'V1' && currentStep === 9 ? '· Proposed V2 advisory' : `(${activePlan.id})`}
                     </h4>
-                    <p className="text-[11px] text-black font-semibold mt-0.5 leading-snug">
+                    <p className="text-sm text-slate-800 font-normal mt-1 leading-relaxed">
                       {currentStep === 4
                         ? 'Statutory baseline relocation assignment submitted for DDMA executive concurrence.'
                         : 'Emergency rerouting (Route R104 severed at KM 4.2) requires state concurrence. Plan V2 pending executive approval.'}
@@ -476,54 +476,54 @@ export default function Dashboard() {
                   <div className="flex items-center gap-2 pt-1">
                     <Link
                       to="/ddma"
-                      className="flex-1 py-1.5 px-3 rounded-lg glass-btn-primary text-white text-xs font-semibold text-center transition"
+                      className="flex-1 min-h-[44px] px-3 rounded-lg bg-[#2563A6] text-white text-sm font-semibold flex items-center justify-center hover:bg-[#1D4F80] transition shadow-xs"
                     >
                       Review in Wayanad DDMA →
                     </Link>
                     <button
                       type="button"
                       onClick={() => handleApprovePlan(currentStep === 4 ? planV1SimulationData : planV2SimulationData)}
-                      className="py-1.5 px-3 rounded-lg bg-white/80 border border-black/15 text-black text-xs font-bold hover:bg-white transition cursor-pointer shadow-2xs"
+                      className="min-h-[44px] px-4 rounded-lg bg-white border border-slate-300 text-slate-900 text-sm font-bold hover:bg-slate-50 transition cursor-pointer shadow-xs"
                     >
                       Concur
                     </button>
                   </div>
                 </div>
               ) : isPlanApproved ? (
-                <div className="p-2.5 rounded-xl bg-emerald-50/80 border border-emerald-200/80 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#027A48]" />
+                <div className="p-3 rounded-xl bg-emerald-50/90 border border-emerald-300 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-[#027A48] shrink-0" />
                     <div>
-                      <span className="text-xs font-bold text-[#027A48] block">No Pending State Actions</span>
-                      <span className="text-[10.5px] text-[#027A48] font-semibold">Plan V{activePlan.version} authorized and operational.</span>
+                      <span className="text-sm font-bold text-[#027A48] block">No pending state actions</span>
+                      <span className="text-xs text-[#027A48] font-medium">Plan V{activePlan.version} authorized and operational.</span>
                     </div>
                   </div>
-                  <Link to="/audit" className="text-[11px] font-bold text-[#027A48] hover:underline shrink-0">
+                  <Link to="/audit" className="text-xs font-bold text-[#027A48] hover:underline shrink-0">
                     Audit →
                   </Link>
                 </div>
               ) : (
-                <div className="p-2.5 rounded-xl glass-card-subtle flex items-center justify-between text-black">
-                  <span className="text-xs font-bold">Pre-incident Monitoring Active</span>
-                  <span className="text-[10.5px] text-black font-medium">No statutory action required</span>
+                <div className="p-3 rounded-xl bg-white/95 border border-slate-200/90 flex items-center justify-between text-slate-800">
+                  <span className="text-sm font-bold">Pre-incident monitoring active</span>
+                  <span className="text-xs text-slate-600 font-medium">No statutory action required</span>
                 </div>
               )}
             </div>
 
             {/* 2C. District Focus (Wayanad High-Priority) */}
-            <div className="pt-1 space-y-2">
+            <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-extrabold uppercase tracking-wider text-black">
-                  District Priority Focus
+                <span className="text-xs font-bold text-slate-800">
+                  District priority focus
                 </span>
-                <div className="flex items-center gap-1 bg-black/5 p-0.5 rounded-lg text-[10px] backdrop-blur-xs">
+                <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg text-xs">
                   <button
                     type="button"
                     onClick={() => setSelectedDistrict('wayanad')}
-                    className={`px-2 py-0.5 rounded transition cursor-pointer ${
+                    className={`px-2.5 py-1 rounded-md transition cursor-pointer text-xs ${
                       selectedDistrict === 'wayanad'
-                        ? 'bg-white text-black font-extrabold shadow-xs'
-                        : 'text-black font-semibold hover:text-black'
+                        ? 'bg-white text-slate-900 font-bold shadow-xs'
+                        : 'text-slate-600 font-medium hover:text-slate-900'
                     }`}
                   >
                     Wayanad
@@ -531,10 +531,10 @@ export default function Dashboard() {
                   <button
                     type="button"
                     onClick={() => setSelectedDistrict('idukki')}
-                    className={`px-2 py-0.5 rounded transition cursor-pointer ${
+                    className={`px-2.5 py-1 rounded-md transition cursor-pointer text-xs ${
                       selectedDistrict === 'idukki'
-                        ? 'bg-white text-black font-extrabold shadow-xs'
-                        : 'text-black font-semibold hover:text-black'
+                        ? 'bg-white text-slate-900 font-bold shadow-xs'
+                        : 'text-slate-600 font-medium hover:text-slate-900'
                     }`}
                   >
                     Idukki
@@ -542,10 +542,10 @@ export default function Dashboard() {
                   <button
                     type="button"
                     onClick={() => setSelectedDistrict('malappuram')}
-                    className={`px-2 py-0.5 rounded transition cursor-pointer ${
+                    className={`px-2.5 py-1 rounded-md transition cursor-pointer text-xs ${
                       selectedDistrict === 'malappuram'
-                        ? 'bg-white text-black font-extrabold shadow-xs'
-                        : 'text-black font-semibold hover:text-black'
+                        ? 'bg-white text-slate-900 font-bold shadow-xs'
+                        : 'text-slate-600 font-medium hover:text-slate-900'
                     }`}
                   >
                     Malappuram
@@ -554,22 +554,22 @@ export default function Dashboard() {
               </div>
 
               {selectedDistrict === 'wayanad' ? (
-                <div className="p-3 rounded-xl glass-card-subtle space-y-2">
+                <div className="p-3.5 rounded-xl bg-white/95 border border-slate-200/90 shadow-2xs space-y-2.5">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h4 className="text-xs font-extrabold text-black">Wayanad District</h4>
-                      <span className="text-[10.5px] text-black font-semibold">Mundakkai-Meppadi Critical Sector</span>
+                      <h4 className="text-sm font-bold text-slate-900">Wayanad District</h4>
+                      <span className="text-xs text-slate-600 font-medium">Mundakkai-Meppadi critical sector</span>
                     </div>
-                    <span className="px-2 py-0.5 rounded-full text-[9.5px] font-bold bg-[#FEF2F2] text-[#B42318] border border-[#FECACA]">
-                      HIGH PRIORITY
+                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#FEF2F2] text-[#B42318] border border-[#FECACA]">
+                      High priority
                     </span>
                   </div>
 
-                  <div className="text-[11px] text-black font-medium space-y-1 pt-1 border-t border-black/10">
+                  <div className="text-xs text-slate-700 font-normal space-y-1.5 pt-2 border-t border-slate-200/80">
                     <div className="flex items-center justify-between">
-                      <span>Corridor Status:</span>
+                      <span className="text-slate-600">Corridor status:</span>
                       {/* Live R1 status takes priority over mock step state */}
-                      <span className={`font-semibold ${
+                      <span className={`font-bold ${
                         liveR1Status === 'blocked' ? 'text-[#B42318]'
                         : liveR1Status === 'degraded' ? 'text-amber-600'
                         : isPlanV2Approved && viewingPlanVersion === 1 ? 'text-[#027A48]'
@@ -577,7 +577,7 @@ export default function Dashboard() {
                         : 'text-[#027A48]'
                       }`}>
                         {liveR1Status === 'blocked'
-                          ? 'Route R1 BLOCKED'
+                          ? 'Route R1 Blocked'
                           : liveR1Status === 'degraded'
                           ? 'Route R1 Degraded'
                           : isPlanV2Approved && viewingPlanVersion === 1
@@ -590,12 +590,12 @@ export default function Dashboard() {
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span>Affected Habitations:</span>
-                      <strong className="text-black font-extrabold">Chooralmala, Mundakkai</strong>
+                      <span className="text-slate-600">Affected habitations:</span>
+                      <strong className="text-slate-900 font-bold">Chooralmala, Mundakkai</strong>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span>Assigned Shelter:</span>
-                      <strong className="text-black font-extrabold">
+                      <span className="text-slate-600">Assigned shelter:</span>
+                      <strong className="text-slate-900 font-bold">
                         {viewingPlanVersion === 2 ? 'Vythiri GHSS' : 'Meppadi Community Hall'}
                       </strong>
                     </div>
@@ -603,29 +603,29 @@ export default function Dashboard() {
 
                   <Link
                     to="/ddma"
-                    className="w-full mt-1 py-1.5 px-3 rounded-lg bg-white/80 border border-black/15 text-[#2563A6] hover:bg-white text-xs font-bold flex items-center justify-center gap-1.5 transition cursor-pointer shadow-2xs"
+                    className="w-full min-h-[44px] mt-1 px-3.5 rounded-lg bg-white border border-slate-300 text-[#1E40AF] hover:bg-slate-50 text-sm font-semibold flex items-center justify-center gap-1.5 transition cursor-pointer shadow-xs"
                   >
                     <span>Open Wayanad DDMA Command Center</span>
-                    <ExternalLink className="w-3 h-3" />
+                    <ExternalLink className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               ) : (
-                <div className="p-3 rounded-xl glass-card-subtle text-center text-black space-y-1">
-                  <div className="text-xs font-extrabold text-black capitalize">{selectedDistrict} District</div>
-                  <div className="text-[11px] text-[#027A48] font-bold">● Normal Precautionary Status</div>
-                  <div className="text-[10.5px] text-black font-semibold">No emergency evacuation orders active.</div>
+                <div className="p-3.5 rounded-xl bg-white/95 border border-slate-200/90 text-center text-slate-800 space-y-1">
+                  <div className="text-sm font-bold text-slate-900 capitalize">{selectedDistrict} District</div>
+                  <div className="text-xs text-[#027A48] font-bold">● Normal Precautionary Status</div>
+                  <div className="text-xs text-slate-600 font-medium">No emergency evacuation orders active.</div>
                 </div>
               )}
             </div>
 
             {/* 2D. Progressive Disclosure: State Evidence & Details Drawer Button */}
-            <div className="pt-1 border-t border-black/10">
+            <div className="pt-1 border-t border-slate-200/80">
               <button
                 type="button"
                 onClick={() => setShowDetailDrawer(true)}
-                className="w-full py-2 px-3 rounded-xl bg-white/70 hover:bg-white text-black text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer border border-white/80 shadow-xs backdrop-blur-xs"
+                className="w-full min-h-[44px] px-3.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-900 text-sm font-semibold flex items-center justify-center gap-2 transition cursor-pointer shadow-xs"
               >
-                <span>View State Evidence & Technical Details</span>
+                <span>View situation evidence & technical details</span>
                 <span>→</span>
               </button>
             </div>
@@ -715,21 +715,21 @@ export default function Dashboard() {
       {/* 4. PROGRESSIVE DISCLOSURE: STATE DETAILS & EVIDENCE DRAWER    */}
       {/* ============================================================ */}
       {showDetailDrawer && (
-        <div className="absolute top-3 right-3 bottom-3 z-[1000] w-[520px] sm:w-[560px] max-w-[calc(100vw-24px)] aegis-floating-card rounded-2xl glass-surface-light shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-right-4 duration-200">
-          {/* Card Header matching Apple Liquid Glass style */}
-          <div className="px-5 py-3.5 border-b border-black/10 flex items-center justify-between bg-white/40 backdrop-blur-md shrink-0">
+        <div className="absolute top-3 right-3 bottom-3 z-[1000] w-[520px] sm:w-[560px] max-w-[calc(100vw-24px)] aegis-floating-card rounded-2xl bg-white/95 border border-slate-300 shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-right-4 duration-200">
+          {/* Card Header */}
+          <div className="px-5 py-4 border-b border-slate-200 flex items-center justify-between bg-white shrink-0">
             <div>
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-black block leading-tight">
-                State Technical Evidence Base
+              <span className="text-xs font-semibold text-slate-600 block leading-tight">
+                Situation evidence
               </span>
-              <h3 className="text-sm font-extrabold text-black">
-                State Situation & Decision Telemetry
+              <h3 className="text-base font-bold text-slate-900 mt-0.5">
+                State situation & decision telemetry
               </h3>
             </div>
             <button
               type="button"
               onClick={() => setShowDetailDrawer(false)}
-              className="p-1.5 rounded-lg text-black hover:bg-black/10 transition cursor-pointer"
+              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition cursor-pointer"
               title="Close telemetry panel"
             >
               <X className="w-5 h-5" />
@@ -737,52 +737,52 @@ export default function Dashboard() {
           </div>
 
           {/* Card Tabs */}
-          <div className="flex border-b border-black/10 bg-black/5 px-4 pt-1.5 text-xs gap-1 shrink-0">
+          <div className="flex border-b border-slate-200 bg-slate-50/80 px-4 pt-2 text-sm gap-2 shrink-0">
             <button
               type="button"
               onClick={() => setDrawerTab('situation')}
-              className={`px-3.5 py-2 font-bold transition cursor-pointer rounded-t-lg ${
+              className={`px-4 py-2.5 font-semibold transition cursor-pointer rounded-t-lg min-h-[44px] flex items-center ${
                 drawerTab === 'situation'
-                  ? 'border-b-2 border-[#2563A6] text-black bg-white shadow-xs'
-                  : 'text-black hover:text-[#2563A6]'
+                  ? 'border-b-2 border-[#1E40AF] text-[#1E40AF] bg-white shadow-xs font-bold'
+                  : 'text-slate-700 hover:text-slate-900'
               }`}
             >
-              Situation Posture
+              Situation posture
             </button>
             <button
               type="button"
               onClick={() => setDrawerTab('evidence')}
-              className={`px-3.5 py-2 font-bold transition cursor-pointer rounded-t-lg ${
+              className={`px-4 py-2.5 font-semibold transition cursor-pointer rounded-t-lg min-h-[44px] flex items-center ${
                 drawerTab === 'evidence'
-                  ? 'border-b-2 border-[#2563A6] text-black bg-white shadow-xs'
-                  : 'text-black hover:text-[#2563A6]'
+                  ? 'border-b-2 border-[#1E40AF] text-[#1E40AF] bg-white shadow-xs font-bold'
+                  : 'text-slate-700 hover:text-slate-900'
               }`}
             >
-              Decision Evidence
+              Decision evidence
             </button>
             <button
               type="button"
               onClick={() => setDrawerTab('data')}
-              className={`px-3.5 py-2 font-bold transition cursor-pointer rounded-t-lg ${
+              className={`px-4 py-2.5 font-semibold transition cursor-pointer rounded-t-lg min-h-[44px] flex items-center ${
                 drawerTab === 'data'
-                  ? 'border-b-2 border-[#2563A6] text-black bg-white shadow-xs'
-                  : 'text-black hover:text-[#2563A6]'
+                  ? 'border-b-2 border-[#1E40AF] text-[#1E40AF] bg-white shadow-xs font-bold'
+                  : 'text-slate-700 hover:text-slate-900'
               }`}
             >
-              Data Freshness
+              Data freshness
             </button>
           </div>
 
           {/* Card Content */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-5 space-y-4 text-slate-800">
             {drawerTab === 'situation' && (
               <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-white/70 border border-black/10 space-y-2 shadow-xs">
-                  <div className="flex items-center justify-between text-[11px] text-black">
-                    <span className="font-extrabold text-black uppercase tracking-wider text-[10px]">Active Tactical Posture</span>
-                    <span className="font-mono text-[10.5px] text-black font-bold bg-white px-2 py-0.5 rounded border border-black/15">{stateMeta.simulatedTime}</span>
+                <div className="p-4 rounded-xl bg-white border border-slate-200 space-y-2 shadow-xs">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-bold text-slate-800">Current response plan</span>
+                    <span className="font-mono tabular-nums text-xs text-slate-700 font-semibold bg-slate-100 px-2.5 py-1 rounded border border-slate-200">{stateMeta.simulatedTime}</span>
                   </div>
-                  <p className="text-xs font-bold text-black leading-relaxed">
+                  <p className="text-sm font-normal text-slate-800 leading-relaxed">
                     {stateMeta.operationalDetail}
                   </p>
                 </div>
@@ -791,22 +791,22 @@ export default function Dashboard() {
             )}
 
             {drawerTab === 'evidence' && (
-              <div className="space-y-3">
-                <div className="text-xs text-black font-bold">
+              <div className="space-y-3.5">
+                <div className="text-sm text-slate-900 font-bold">
                   Evidence base utilized for Plan V{activeDecisionContext.planVersion} multi-criteria spatial optimization:
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2.5">
                   {activeDecisionContext.evidence.map((ev) => (
-                    <div key={ev.id} className="p-2.5 rounded-xl bg-white/70 border border-black/10 space-y-1 text-xs">
-                      <div className="flex items-center justify-between text-[10.5px]">
-                        <strong className="text-black font-extrabold">{ev.sourceAgency}</strong>
-                        <span className="font-mono text-black font-bold">{ev.timestamp}</span>
+                    <div key={ev.id} className="p-3.5 rounded-xl bg-white border border-slate-200 space-y-1.5 text-sm shadow-2xs">
+                      <div className="flex items-center justify-between text-xs">
+                        <strong className="text-slate-900 font-bold">{ev.sourceAgency}</strong>
+                        <span className="font-mono tabular-nums text-slate-600 font-semibold">{ev.timestamp}</span>
                       </div>
-                      <p className="text-black font-medium leading-snug">
+                      <p className="text-sm text-slate-800 font-normal leading-relaxed">
                         {ev.observation}
                       </p>
-                      <div className="flex items-center justify-between text-[10px] text-black pt-1 border-t border-black/10">
-                        <span>Confidence: <strong className="uppercase text-black font-extrabold">{ev.confidence}</strong></span>
+                      <div className="flex items-center justify-between text-xs text-slate-600 pt-1.5 border-t border-slate-100">
+                        <span>Confidence: <strong className="text-slate-900 font-semibold capitalize">{ev.confidence}</strong></span>
                         <span className="text-[#027A48] font-bold">{ev.classification}</span>
                       </div>
                     </div>
@@ -814,21 +814,21 @@ export default function Dashboard() {
                 </div>
 
                 {/* Audit Trail Card */}
-                <div className="p-3 rounded-xl bg-white/70 border border-black/10 space-y-2">
+                <div className="p-4 rounded-xl bg-white border border-slate-200 space-y-2 shadow-xs">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-black">Cryptographic Audit Ledger</span>
-                    <span className="text-[10px] font-mono text-[#027A48] font-bold bg-[#ECFDF3] px-2 py-0.5 rounded">
+                    <span className="text-sm font-bold text-slate-900">Cryptographic audit ledger</span>
+                    <span className="text-xs font-mono font-bold text-[#027A48] bg-[#ECFDF3] px-2.5 py-0.5 rounded border border-[#ABEFC6]">
                       SHA-256 Valid
                     </span>
                   </div>
-                  <p className="text-[11px] text-black font-medium">
+                  <p className="text-xs text-slate-700 font-normal leading-relaxed">
                     Every statutory plan modification, recommendation, and approval is immutably sequenced.
                   </p>
                   <Link
                     to="/audit"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2563A6] hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1E40AF] hover:underline pt-1"
                   >
-                    <span>Inspect Full Audit History</span>
+                    <span>Inspect full audit history</span>
                     <span>→</span>
                   </Link>
                 </div>

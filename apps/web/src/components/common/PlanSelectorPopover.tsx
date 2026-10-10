@@ -93,10 +93,10 @@ export default function PlanSelectorPopover({
       case 'superseded':
       case 'invalidated':
       case 'archived':
-        return 'bg-[#94A3B8]'; // Muted slate
+        return 'bg-slate-400'; // Slate
       case 'not_created':
       default:
-        return 'bg-[#CBD5E1]';
+        return 'bg-slate-300';
     }
   };
 
@@ -104,37 +104,37 @@ export default function PlanSelectorPopover({
   const getStatusBadgeClasses = (status: PlanStatusType) => {
     switch (status) {
       case 'approved':
-        return 'bg-[#ECFDF3] text-[#027A48] border-[#ABEFC6]';
+        return 'bg-[#ECFDF3] text-[#027A48] border-[#A6F4C5]';
       case 'pending_approval':
       case 'pending_human_approval':
-        return 'bg-[#FEF7C3] text-[#B54708] border-[#FEDF89]';
+        return 'bg-[#FFFBEB] text-[#92400E] border-[#FDE68A]';
       case 'rejected':
-        return 'bg-[#FEF2F2] text-[#B42318] border-[#FECACA]';
+        return 'bg-[#FEF2F2] text-[#991B1B] border-[#FECACA]';
       case 'draft':
       case 'formulated':
-        return 'bg-[#EFF6FF] text-[#2563A6] border-[#BFDBFE]';
+        return 'bg-[#EFF6FF] text-[#1D5B99] border-[#BFDBFE]';
       case 'superseded':
       case 'invalidated':
-        return 'bg-[#F1F5F9] text-[#64748B] border-[#E2E8F0]';
+        return 'bg-slate-100 text-slate-700 border-slate-300';
       default:
-        return 'bg-[#F8FAFC] text-[#718096] border-[#D9E1EA]';
+        return 'bg-slate-50 text-slate-700 border-slate-300';
     }
   };
 
   return (
     <div className="relative inline-flex items-center gap-2 select-none" ref={containerRef}>
       {/* 1. Main Header Pill Container */}
-      <div className="glass-pill-light rounded-full px-2.5 py-1 flex items-center gap-2 text-xs">
+      <div className="glass-pill-light rounded-xl px-3 py-1.5 flex items-center gap-2.5 text-sm shadow-xs border border-slate-300">
         {/* Toggleable Plan Button */}
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className={`flex items-center gap-2 px-3 py-1 rounded-full font-bold text-xs transition cursor-pointer border ${
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-lg font-bold text-[14px] transition cursor-pointer border ${
             isOpen
-              ? 'bg-[#EEF4FB] border-[#2563A6] text-[#172033] ring-2 ring-[#2563A6]/20'
+              ? 'bg-blue-50 border-blue-600 text-blue-900 ring-2 ring-blue-500/20'
               : isViewingHistorical
-              ? 'bg-[#FFFBEB] border-amber-300 text-amber-900 hover:bg-[#FEF3C7]'
-              : 'bg-white/80 hover:bg-white border-white/80 text-[#172033] shadow-2xs'
+              ? 'bg-amber-50 border-amber-300 text-amber-900 hover:bg-amber-100'
+              : 'bg-white hover:bg-slate-50 border-slate-300 text-slate-900'
           }`}
           aria-expanded={isOpen}
           aria-haspopup="listbox"
@@ -145,11 +145,11 @@ export default function PlanSelectorPopover({
               viewingPlan?.status || 'approved'
             )}`}
           />
-          <span className="tracking-tight font-extrabold text-black">
-            PLAN V{viewingVersion}
+          <span className="tracking-tight font-bold text-[#172033]">
+            Plan V{viewingVersion}
           </span>
           <ChevronDown
-            className={`w-3.5 h-3.5 text-black transition-transform duration-200 ${
+            className={`w-4 h-4 text-slate-700 transition-transform duration-200 ${
               isOpen ? 'rotate-180' : ''
             }`}
           />
@@ -159,7 +159,7 @@ export default function PlanSelectorPopover({
         <div className="flex items-center gap-2 pr-1 min-w-0">
           {statusDescriptor ? (
             <span
-              className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold border whitespace-nowrap truncate max-w-[150px] sm:max-w-[240px] md:max-w-none ${getStatusBadgeClasses(
+              className={`px-3 py-1 rounded-md text-[13px] font-semibold border whitespace-nowrap truncate max-w-[180px] sm:max-w-[280px] md:max-w-none ${getStatusBadgeClasses(
                 viewingPlan?.status || 'approved'
               )}`}
               title={statusDescriptor}
@@ -168,62 +168,60 @@ export default function PlanSelectorPopover({
             </span>
           ) : (
             <span
-              className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold border whitespace-nowrap truncate max-w-[150px] sm:max-w-[240px] md:max-w-none ${getStatusBadgeClasses(
+              className={`px-3 py-1 rounded-md text-[13px] font-semibold border whitespace-nowrap truncate max-w-[180px] sm:max-w-[280px] md:max-w-none ${getStatusBadgeClasses(
                 viewingPlan?.status || 'approved'
               )}`}
               title={viewingPlan?.statusLabel || 'Active Operational Plan'}
             >
-              {viewingPlan?.statusLabel || 'Active Operational Plan'}
+              {viewingPlan?.statusLabel || 'Active operational plan'}
             </span>
           )}
 
           {/* Inspection Mode Indicator Banner (when viewing historical plan) */}
           {isViewingHistorical && (
-            <div className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#FEF3C7] border border-[#FCD34D] text-[10.5px] text-[#92400E]">
-              <History className="w-3 h-3 text-[#B45309]" />
-              <span className="font-semibold">Viewing Historical Plan V{viewingVersion}</span>
-              <span className="text-[#B45309]/70">· Active: V{activeOperationalVersion}</span>
+            <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-50 border border-amber-300 text-[12px] text-amber-900">
+              <History className="w-3.5 h-3.5 text-amber-700" />
+              <span className="font-semibold">Viewing historical Plan V{viewingVersion}</span>
+              <span className="text-amber-800">· Active: V{activeOperationalVersion}</span>
               <button
                 type="button"
                 onClick={() => onSelectPlan(activeOperationalVersion)}
-                className="underline font-bold text-[#78350F] hover:text-black ml-1 cursor-pointer"
+                className="underline font-bold text-amber-900 hover:text-black ml-1 cursor-pointer"
                 title="Switch back to current active operational plan"
               >
-                Return to Active
+                Return to active
               </button>
             </div>
           )}
-
-          {/* Secondary Incident Notice - accessible via title/drawer, hidden in top pill to avoid toolbar overlap */}
         </div>
 
-        {/* Secondary Simulator & Reset Controls (Subtly Placed) */}
+        {/* Secondary Simulator & Reset Controls */}
         {secondaryControls && (
           <>
-            <div className="h-3.5 w-px bg-black/15"></div>
-            <div className="flex items-center gap-1">{secondaryControls}</div>
+            <div className="h-4 w-px bg-slate-300"></div>
+            <div className="flex items-center gap-1.5">{secondaryControls}</div>
           </>
         )}
       </div>
 
       {/* 2. Floating Popover Anchored Directly Below the Button */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-80 sm:w-96 glass-surface-light rounded-2xl shadow-2xl z-[1200] overflow-hidden text-xs text-black animate-in fade-in slide-in-from-top-1 duration-150">
+        <div className="absolute top-full left-0 mt-2 w-84 sm:w-96 bg-white rounded-xl shadow-2xl z-[1200] overflow-hidden text-sm text-[#172033] border border-slate-300 animate-in fade-in duration-150">
           {/* Popover Header */}
-          <div className="px-3.5 py-2.5 bg-white/40 border-b border-black/10 backdrop-blur-sm flex items-center justify-between">
+          <div className="px-4 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
             <div>
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-black block leading-tight">
-                Relocation Plans
+              <span className="text-xs font-semibold text-slate-700 block leading-tight">
+                Relocation plans
               </span>
-              <span className="text-[11px] text-black font-semibold">
+              <span className="text-[13px] text-slate-900 font-semibold">
                 {incidentNotice || 'Operational versions & decision ledger'}
               </span>
             </div>
-            <span className="text-[10px] font-bold text-[#2563A6] bg-[#EFF6FF] border border-[#BFDBFE] px-2 py-0.5 rounded-full">
+            <span className="text-xs font-semibold text-blue-800 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full">
               {plans.filter((p) => p.status !== 'not_created').length}{' '}
               {plans.filter((p) => p.status !== 'not_created').length === 1
-                ? 'Plan Available'
-                : 'Plans Available'}
+                ? 'plan available'
+                : 'plans available'}
             </span>
           </div>
 
@@ -244,42 +242,40 @@ export default function PlanSelectorPopover({
                       setIsOpen(false);
                     }
                   }}
-                  className={`p-2.5 rounded-lg transition border ${
+                  className={`p-3 rounded-lg transition border ${
                     isSelected
-                      ? 'bg-[#F0F6FE] border-[#BFDBFE] text-black shadow-xs'
+                      ? 'bg-blue-50/70 border-blue-300 text-[#172033] shadow-xs'
                       : isClickable
-                      ? 'bg-white hover:bg-[#F8FAFC] border-black/15 text-black cursor-pointer'
-                      : 'bg-[#F8FAFC] border-black/10 opacity-60 cursor-not-allowed'
+                      ? 'bg-white hover:bg-slate-50 border-slate-200 text-[#172033] cursor-pointer'
+                      : 'bg-slate-50 border-slate-200 opacity-60 cursor-not-allowed'
                   }`}
                 >
                   {/* Row 1: Radio Indicator + Plan Code + Status Badge */}
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2.5">
                       <span
                         className={`flex items-center justify-center w-4 h-4 rounded-full border ${
                           isSelected
-                            ? 'border-[#2563A6] bg-[#2563A6]'
+                            ? 'border-blue-600 bg-blue-600'
                             : isClickable
-                            ? 'border-[#94A3B8] bg-white'
-                            : 'border-[#CBD5E1] bg-[#F1F5F9]'
+                            ? 'border-slate-400 bg-white'
+                            : 'border-slate-300 bg-slate-100'
                         }`}
                       >
                         {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
                       </span>
-                      <span
-                        className="font-extrabold text-xs text-black"
-                      >
-                        {plan.code || `PLAN V${plan.version}`}
+                      <span className="font-bold text-[14px] text-[#172033]">
+                        {plan.code || `Plan V${plan.version}`}
                       </span>
                     </div>
 
                     <div className="flex items-center gap-1.5">
                       {plan.isCurrentActive ? (
-                        <span className="px-1.5 py-0.5 rounded text-[9px] font-extrabold uppercase tracking-wide bg-[#ECFDF3] text-[#027A48] border border-[#ABEFC6]">
-                          Current
+                        <span className="px-2 py-0.5 rounded text-xs font-semibold bg-[#ECFDF3] text-[#027A48] border border-[#A6F4C5]">
+                          Current active
                         </span>
                       ) : plan.status === 'superseded' || plan.status === 'invalidated' ? (
-                        <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide bg-black/5 text-black border border-black/15">
+                        <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700 border border-slate-300">
                           Superseded
                         </span>
                       ) : null}
@@ -287,20 +283,20 @@ export default function PlanSelectorPopover({
                   </div>
 
                   {/* Row 2: Status Text with Colored Semantic Dot */}
-                  <div className="mt-1.5 pl-6 flex items-center gap-1.5">
+                  <div className="mt-1.5 pl-6 flex items-center gap-2">
                     <span
-                      className={`w-1.5 h-1.5 rounded-full shrink-0 ${getStatusDotColor(
+                      className={`w-2 h-2 rounded-full shrink-0 ${getStatusDotColor(
                         plan.status
                       )}`}
                     />
-                    <span className="text-[11px] font-bold text-black">
+                    <span className="text-[13px] font-semibold text-slate-800">
                       {plan.statusLabel}
                     </span>
                   </div>
 
                   {/* Row 3: Operational Allocation Details (Shelter, Route, Evacuees) */}
                   {(plan.shelterName || plan.routeCode || plan.evacueesCount) && (
-                    <div className="mt-1 pl-6 text-[10.5px] text-black font-semibold flex items-center gap-1.5 flex-wrap">
+                    <div className="mt-1 pl-6 text-[13px] text-slate-700 font-medium flex items-center gap-1.5 flex-wrap tabular-nums">
                       {plan.evacueesCount && <span>{plan.evacueesCount} evacuees</span>}
                       {plan.routeCode && <span>· Corridor {plan.routeCode}</span>}
                       {plan.shelterName && (
@@ -311,8 +307,8 @@ export default function PlanSelectorPopover({
 
                   {/* Row 4: Statutory Approval / Invalidation Metadata */}
                   {plan.approvedBy && (
-                    <div className="mt-1 pl-6 text-[10px] text-black font-semibold">
-                      Auth: {plan.approvedBy}
+                    <div className="mt-1 pl-6 text-xs text-slate-600">
+                      Authorized by: {plan.approvedBy}
                     </div>
                   )}
                 </div>
@@ -321,12 +317,12 @@ export default function PlanSelectorPopover({
           </div>
 
           {/* Popover Footer: Calm Government Audit Ledger Notice */}
-          <div className="px-3.5 py-2 bg-[#F8FAFC] border-t border-black/10 text-[10px] text-black font-semibold flex items-center justify-between">
+          <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-700 font-medium flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#2563A6]" />
-              <span className="font-bold text-black">Cryptographically Linked Audit Ledger</span>
+              <ShieldCheck className="w-4 h-4 text-blue-700" />
+              <span className="font-semibold text-slate-800">Cryptographically linked audit ledger</span>
             </div>
-            <span className="font-mono text-[9px] text-black font-bold">PostGIS & MCDA</span>
+            <span className="font-mono text-xs text-slate-600">PostGIS & MCDA</span>
           </div>
         </div>
       )}

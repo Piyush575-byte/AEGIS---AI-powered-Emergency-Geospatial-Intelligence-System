@@ -377,24 +377,24 @@ export default function LeafletMap({
       <div ref={mapContainerRef} className="w-full h-full" style={{ minHeight: '480px' }} />
 
       {/* Floating Map Controls & Dynamic Zoom Level Indicator */}
-      <div className="absolute top-16 right-4 z-[900] flex flex-col gap-1.5 shadow-sm">
+      <div className="absolute top-16 right-4 z-[900] flex flex-col gap-2 shadow-sm">
         {/* Dynamic Zoom Resolution Pill */}
-        <div className="glass-pill-light rounded-xl px-2.5 py-1 text-[10.5px] font-medium text-[#526174] shadow-xs flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#2563A6]"></span>
+        <div className="bg-white/95 border border-slate-300 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-800 shadow-xs flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-[#1E40AF]"></span>
           <span>
             {zoomLevel < 11
-              ? 'State Aggregate View'
+              ? 'State aggregate view'
               : zoomLevel < 14
-              ? 'District Spatial Clusters'
-              : 'Local Operational View'}{' '}
-            <span className="text-[#718096] font-mono">(z:{zoomLevel})</span>
+              ? 'District spatial clusters'
+              : 'Local operational view'}{' '}
+            <span className="text-slate-600 font-mono tabular-nums">(z:{zoomLevel})</span>
           </span>
         </div>
 
-        <div className="glass-pill-light rounded-xl overflow-hidden flex flex-col shadow-xs divide-y divide-slate-200/50">
+        <div className="bg-white/95 border border-slate-300 rounded-xl overflow-hidden flex flex-col shadow-xs divide-y divide-slate-200">
           <button
             onClick={handleZoomIn}
-            className="w-8 h-8 flex items-center justify-center text-[#172033] hover:bg-black/5 active:bg-black/10 text-base font-semibold transition cursor-pointer"
+            className="w-9 h-9 flex items-center justify-center text-slate-900 hover:bg-slate-100 active:bg-slate-200 text-lg font-bold transition cursor-pointer"
             title="Zoom In"
             aria-label="Zoom in"
           >
@@ -402,7 +402,7 @@ export default function LeafletMap({
           </button>
           <button
             onClick={handleZoomOut}
-            className="w-8 h-8 flex items-center justify-center text-[#172033] hover:bg-black/5 active:bg-black/10 text-base font-semibold transition cursor-pointer"
+            className="w-9 h-9 flex items-center justify-center text-slate-900 hover:bg-slate-100 active:bg-slate-200 text-lg font-bold transition cursor-pointer"
             title="Zoom Out"
             aria-label="Zoom out"
           >
@@ -411,31 +411,31 @@ export default function LeafletMap({
         </div>
         <button
           onClick={handleResetView}
-          className="glass-pill-light rounded-xl px-2.5 py-1 text-[11px] font-semibold text-[#172033] hover:bg-black/5 active:bg-black/10 transition shadow-xs text-center cursor-pointer"
+          className="bg-white/95 border border-slate-300 rounded-xl px-3 py-1.5 text-xs font-bold text-slate-800 hover:bg-slate-100 active:bg-slate-200 transition shadow-xs text-center cursor-pointer min-h-[36px]"
           title="Reset map view"
         >
-          Reset View
+          Reset view
         </button>
       </div>
 
       {/* Subtle, Calm Floating Legend */}
-      <div className="absolute bottom-4 right-4 z-[1000] glass-surface-light rounded-2xl px-3.5 py-2 text-[11px] text-[#172033] shadow-md pointer-events-none hidden sm:block">
+      <div className="absolute bottom-4 right-4 z-[1000] bg-white/95 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-800 shadow-md pointer-events-none hidden sm:block">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#FFFFFF] border-2 border-[#475569] inline-block"></span>
-            <span className="text-[#526174]">Origin</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-white border-2 border-slate-600 inline-block"></span>
+            <span className="text-slate-700 font-medium">Origin</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className={`w-3.5 h-1 inline-block ${r1Blocked ? 'bg-[#B42318] border-dashed border-t border-[#B42318]' : 'bg-[#2563A6]'}`}></span>
-            <span className="text-[#526174]">R1 {r1Blocked ? '(Blocked)' : '(Clear)'}</span>
+            <span className={`w-3.5 h-1 inline-block ${r1Blocked ? 'bg-[#B42318] border-dashed border-t border-[#B42318]' : 'bg-[#1E40AF]'}`}></span>
+            <span className="text-slate-700 font-medium">R1 {r1Blocked ? '(Blocked)' : '(Clear)'}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="w-3.5 h-1 bg-[#027A48] inline-block rounded-xs"></span>
-            <span className="text-[#526174]">R4 (Bypass)</span>
+            <span className="text-slate-700 font-medium">R4 (Bypass)</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-xs bg-[#ECFDF3] border border-[#ABEFC6] inline-block"></span>
-            <span className="text-[#526174]">Safe Shelter</span>
+            <span className="text-slate-700 font-medium">Safe shelter</span>
           </div>
         </div>
       </div>

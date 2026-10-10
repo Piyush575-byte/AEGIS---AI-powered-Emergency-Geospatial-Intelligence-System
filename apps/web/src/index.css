@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -7,64 +7,64 @@
 }
 
 /* ============================================================
-   AEGIS Fatigue-Conscious Government Operational Design System
-   Primary Reference: GOV.UK Design System
-   Secondary Reference: US Web Design System (USWDS)
+   AEGIS Mission-Critical Government Operational Design System
+   High-Contrast Typography, Readability & Cognitive Ergonomics
+   Reference Standards: GOV.UK Design System & USWDS
    ============================================================ */
 
 :root {
-  /* Application Surface & Base - Soft blue-slate & neutral hierarchy */
-  --bg-app: #F5F7FA;
+  /* Surface System - Clean Solid Hierarchy with Subtle Layering */
+  --bg-app: #F1F5F9;
   --bg-surface: #FFFFFF;
   --bg-surface-secondary: #F8FAFC;
-  --bg-surface-tertiary: #EEF3F8;
+  --bg-surface-tertiary: #EEF2F6;
   
-  /* Primary Restrained Government Blue */
-  --gov-blue: #2563A6;
-  --gov-blue-hover: #1D4F80;
-  --gov-blue-dark: #174A7C;
-  --gov-blue-soft: #E8F1FA;
-  --gov-blue-light: #EFF6FF;
+  /* Primary Restrained Government Blue & Teal */
+  --gov-blue: #1D5B99;
+  --gov-blue-hover: #154575;
+  --gov-blue-dark: #0F3256;
+  --gov-blue-soft: #EBF3FA;
+  --gov-blue-light: #F0F6FC;
 
-  /* Typography Colors - Black & High-Readability (No Grey Text) */
-  --text-primary: #000000;
-  --text-secondary: #000000;
-  --text-muted: #000000;
-  --text-inverse: #FFFFFF;
+  /* High-Contrast Accessible Text Tokens (WCAG 2.2 AA / AAA Compliant) */
+  --text-primary: #172033;      /* Deep navy / near-black for maximum acuity */
+  --text-secondary: #475569;    /* Dark slate for secondary descriptions */
+  --text-supporting: #334155;   /* Strong charcoal for important details */
+  --text-inverse: #FFFFFF;      /* Pure white on dark surfaces */
 
-  /* Borders & Dividers - Subtle Hairline */
-  --border-strong: #CBD5E1;
-  --border-default: #D9E1EA;
+  /* Borders & Dividers - Crisp & Well Defined */
+  --border-strong: #94A3B8;
+  --border-default: #CBD5E1;
   --border-subtle: #E2E8F0;
 
-  /* Semantic Operational Tokens (Muted, Restrained) */
+  /* Semantic Operational Tokens - Always Paired with Explicit Labels & Icons */
   --status-critical-bg: #FEF2F2;
   --status-critical-border: #FECACA;
-  --status-critical-text: #B42318;
+  --status-critical-text: #991B1B;
   --status-critical-solid: #DC2626;
 
-  --status-warning-bg: #FFFAEB;
-  --status-warning-border: #FEDF89;
-  --status-warning-text: #B54708;
-  --status-warning-solid: #F59E0B;
+  --status-warning-bg: #FFFBEB;
+  --status-warning-border: #FDE68A;
+  --status-warning-text: #92400E;
+  --status-warning-solid: #D97706;
 
   --status-safe-bg: #ECFDF3;
-  --status-safe-border: #ABEFC6;
+  --status-safe-border: #A6F4C5;
   --status-safe-text: #027A48;
   --status-safe-solid: #059669;
 
   --status-info-bg: #EFF6FF;
-  --status-info-border: #B2DDFF;
-  --status-info-text: #175CD3;
-  --status-info-solid: #2563A6;
+  --status-info-border: #BFDBFE;
+  --status-info-text: #1E40AF;
+  --status-info-solid: #2563EB;
 
   /* Typography Families */
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 /* ============================================================
-   Base Setup - Readable & Accessible
+   Base Setup - Legible, Robust & Ergonomic
    ============================================================ */
 
 *, *::before, *::after {
@@ -80,32 +80,39 @@ html, body, #root {
   background-color: var(--bg-app);
   color: var(--text-primary);
   font-family: var(--font-sans);
-  font-size: 15px; /* Minimum legible base text */
+  font-size: 15px; /* Base 15px with strong legibility */
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Accessible, Calm Focus Rings */
+/* Accessible Numerical Numerals */
+.tnum,
+.font-mono-code,
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Accessible, Distinguishable Focus Rings */
 :focus-visible {
-  outline: 3px solid #38bdf8;
+  outline: 3px solid #0284C7;
   outline-offset: 2px;
 }
 
-/* Scrollbars */
+/* Clean Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-app);
+  background: var(--bg-surface-secondary);
 }
 ::-webkit-scrollbar-thumb {
-  background: #475569;
-  border-radius: 3px;
+  background: #94A3B8;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #64748B;
 }
 
 /* ============================================================
@@ -114,8 +121,8 @@ html, body, #root {
 
 .aegis-shell {
   display: grid;
-  grid-template-rows: 48px 1fr;
-  grid-template-columns: 185px 1fr;
+  grid-template-rows: 52px 1fr;
+  grid-template-columns: 210px 1fr;
   height: 100vh;
   width: 100vw;
   background: var(--bg-app);
@@ -124,43 +131,29 @@ html, body, #root {
 .aegis-header {
   grid-column: 1 / -1;
   grid-row: 1;
-  background: rgba(14, 16, 22, 0.88);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  background: #0F172A; /* Deep dark slate-navy for authoritative contrast */
   color: #FFFFFF;
   display: flex;
   align-items: center;
   padding: 0 16px;
   gap: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
   z-index: 50;
   user-select: none;
 }
 
 .aegis-sidebar-container {
-  background: rgba(14, 16, 22, 0.88);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border-right: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow:
-    4px 0 30px rgba(0, 0, 0, 0.35),
-    inset -1px 0 0 rgba(255, 255, 255, 0.08);
+  background: #111827;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
   color: #FFFFFF;
 }
 
 .aegis-sidebar {
   grid-column: 1;
   grid-row: 2;
-  background: rgba(14, 16, 22, 0.88);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border-right: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow:
-    4px 0 30px rgba(0, 0, 0, 0.35),
-    inset -1px 0 0 rgba(255, 255, 255, 0.08);
+  background: #111827;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
   overflow-y: auto;
   padding: 12px 0;
   display: flex;
@@ -179,7 +172,6 @@ html, body, #root {
   height: 100%;
 }
 
-/* Map-first full layout */
 .aegis-map-canvas {
   position: absolute;
   inset: 0;
@@ -189,134 +181,76 @@ html, body, #root {
 }
 
 /* ============================================================
-   Apple-Inspired Liquid Glass Design System
+   Mission-Critical Solid & Layered Surfaces (High Contrast)
    ============================================================ */
 
-/* Light Liquid Glass Material Surface (Reusable on any container/popover/legend) */
+/* Solid Crisp Material Surface (Reusable on containers, cards, popovers) */
 .glass-surface-light {
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.78);
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  border-radius: 14px;
   box-shadow:
-    0 16px 40px -6px rgba(15, 23, 42, 0.14),
-    0 4px 12px rgba(15, 23, 42, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
-  color: #172033;
+    0 10px 25px -4px rgba(15, 23, 42, 0.10),
+    0 4px 8px -2px rgba(15, 23, 42, 0.05);
+  color: var(--text-primary);
 }
 
-/* Light Liquid Glass Floating Card Layout */
+/* Operational Floating Panel */
 .aegis-floating-card,
 .aegis-floating-drawer {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.78);
-  border-radius: 18px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
+  border-radius: 14px;
   box-shadow:
-    0 16px 40px -6px rgba(15, 23, 42, 0.14),
-    0 4px 12px rgba(15, 23, 42, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    0 16px 36px -6px rgba(15, 23, 42, 0.14),
+    0 4px 12px rgba(15, 23, 42, 0.06);
   overflow: hidden;
-  color: #000000;
-  transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+  color: var(--text-primary);
+  transition: max-height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.2s ease;
-  animation: aegis-card-enter 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: aegis-card-enter 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Floating Glass Pill (Toolbar, Segments, Actions) */
+/* Solid Clean Control Pills (Toolbars, Action Strips) */
 .glass-pill-light {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.82);
+  background: #FFFFFF;
+  border: 1px solid var(--border-default);
   box-shadow:
-    0 8px 24px -2px rgba(15, 23, 42, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    0 4px 12px rgba(15, 23, 42, 0.06),
+    0 1px 3px rgba(15, 23, 42, 0.04);
 }
 
-/* Dark Pill Control */
 .glass-pill-dark {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Sub-card inside glass panels (Nested Frosted Material) */
+/* Sub-card inside panels */
 .glass-card-subtle {
-  background: rgba(248, 250, 252, 0.68);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.85);
-  box-shadow:
-    0 1px 3px rgba(15, 23, 42, 0.03),
-    inset 0 1px 0 rgba(255, 255, 255, 0.90);
+  background: #F8FAFC;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
 }
 
-/* Apple Primary Action Glass Pill */
+/* Primary Action Pill */
 .glass-btn-primary {
-  background: linear-gradient(180deg, #2563EB 0%, #1D4ED8 100%);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow:
-    0 4px 14px rgba(29, 78, 216, 0.30),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--gov-blue);
+  color: #FFFFFF;
+  border: 1px solid #164677;
+  box-shadow: 0 2px 6px rgba(29, 91, 153, 0.25);
+  transition: all 0.15s ease;
 }
 .glass-btn-primary:hover {
-  background: linear-gradient(180deg, #3B82F6 0%, #2563EB 100%);
-  box-shadow:
-    0 6px 18px rgba(29, 78, 216, 0.40),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45);
-}
-
-/* Accessibility: Reduced Transparency & Motion */
-@media (prefers-reduced-transparency: reduce) {
-  .aegis-header {
-    background: #0F172A;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  .aegis-sidebar {
-    background: #0F172A;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  .glass-surface-light,
-  .aegis-floating-card,
-  .aegis-floating-drawer,
-  .glass-pill-light {
-    background: #FFFFFF;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  .glass-card-subtle {
-    background: #F8FAFC;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
-}
-
-.aegis-floating-card > div:last-child {
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scroll-behavior: smooth;
+  background: var(--gov-blue-hover);
+  box-shadow: 0 4px 12px rgba(29, 91, 153, 0.35);
 }
 
 @keyframes aegis-card-enter {
-  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
-  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0);    }
 }
 
 @media (max-width: 768px) {
@@ -327,29 +261,34 @@ html, body, #root {
     left: 12px;
     right: 12px;
     top: 12px;
-    max-height: 52vh;
+    max-height: 60vh;
   }
 }
 
 /* ============================================================
-   Typography Hierarchy - Legible & Direct
+   Standard Typography Hierarchy Scale
+   Min Targets:
+     Main Heading: 20-24px (1.2-1.35)
+     Section Heading: 17-20px (1.3)
+     Incident Title: 15-17px (1.35)
+     Body: 14-16px (1.45-1.6)
+     Buttons/Tabs: 14-15px (1.35)
+     Metrics: 24-32px (1.2)
+     Secondary/Meta: 13-14px (1.4)
+     Overlines/Badges: 12px min
    ============================================================ */
 
-.font-mono-code {
-  font-family: var(--font-mono);
-}
-
 .text-title-xl {
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
   color: var(--text-primary);
   line-height: 1.25;
 }
 
 .text-title-lg {
-  font-size: 19px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text-primary);
   line-height: 1.3;
@@ -365,19 +304,34 @@ html, body, #root {
 .text-body-regular {
   font-size: 15px;
   font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.text-body-secondary {
+  font-size: 14px;
+  font-weight: 400;
   color: var(--text-secondary);
   line-height: 1.5;
 }
 
-.text-body-muted {
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--text-muted);
-  line-height: 1.45;
+.text-caption {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.text-overline {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
 }
 
 /* ============================================================
-   Buttons - Generous Touch Targets & Clear Actions
+   Buttons - Large Touch Targets (Target ~44px) & Strong Contrast
    ============================================================ */
 
 .aegis-btn {
@@ -385,63 +339,64 @@ html, body, #root {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 42px;
-  padding: 8px 18px;
+  min-height: 44px; /* Touch-safe 44px height */
+  padding: 10px 18px;
   font-size: 14px;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.12s ease;
+  transition: all 0.15s ease;
   border: 1px solid transparent;
   text-decoration: none;
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 .aegis-btn:disabled {
-  opacity: 0.45;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 .aegis-btn-primary {
   background: var(--gov-blue);
-  color: #ffffff;
-  border-color: #1a568c;
+  color: #FFFFFF;
+  border-color: #164677;
 }
 .aegis-btn-primary:hover:not(:disabled) {
   background: var(--gov-blue-hover);
 }
 
 .aegis-btn-success {
-  background: #15803d;
-  color: #ffffff;
-  border-color: #166534;
+  background: #027A48;
+  color: #FFFFFF;
+  border-color: #05603A;
 }
 .aegis-btn-success:hover:not(:disabled) {
-  background: #166534;
+  background: #05603A;
 }
 
 .aegis-btn-danger {
-  background: #dc2626;
-  color: #ffffff;
-  border-color: #b91c1c;
+  background: #B42318;
+  color: #FFFFFF;
+  border-color: #911D13;
 }
 .aegis-btn-danger:hover:not(:disabled) {
-  background: #b91c1c;
+  background: #911D13;
 }
 
 .aegis-btn-secondary {
-  background: #1e293b;
-  color: #f1f5f9;
-  border-color: #334155;
+  background: #FFFFFF;
+  color: var(--text-primary);
+  border-color: var(--border-default);
 }
 .aegis-btn-secondary:hover:not(:disabled) {
-  background: #334155;
-  color: #ffffff;
+  background: #F8FAFC;
+  border-color: var(--border-strong);
 }
 
 .aegis-btn-sm {
-  padding: 4px 8px;
-  font-size: 11px;
+  min-height: 36px;
+  padding: 6px 14px;
+  font-size: 13px;
 }
 
 .aegis-btn-full {
@@ -449,77 +404,75 @@ html, body, #root {
 }
 
 /* ============================================================
-   Badges
+   Badges - Accessible, Sentence Case, 12px Minimum
    ============================================================ */
 
 .aegis-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 3px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.2;
+  gap: 5px;
+  font-size: 12px; /* Minimum readable target */
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  line-height: 1.3;
   white-space: nowrap;
 }
 
-/* Risk Semantic Badges */
+/* Risk Badges */
 .aegis-badge-critical {
-  background: var(--risk-critical-bg);
-  color: var(--risk-critical-text);
-  border: 1px solid var(--risk-critical-border);
+  background: #FEF2F2;
+  color: #991B1B;
+  border: 1px solid #FECACA;
 }
 
 .aegis-badge-high {
-  background: var(--risk-high-bg);
-  color: var(--risk-high-text);
-  border: 1px solid var(--risk-high-border);
+  background: #FFFBEB;
+  color: #92400E;
+  border: 1px solid #FDE68A;
 }
 
 .aegis-badge-warning {
-  background: var(--risk-warning-bg);
-  color: var(--risk-warning-text);
-  border: 1px solid var(--risk-warning-border);
+  background: #FFFBEB;
+  color: #92400E;
+  border: 1px solid #FDE68A;
 }
 
 .aegis-badge-safe {
-  background: var(--risk-safe-bg);
-  color: var(--risk-safe-text);
-  border: 1px solid var(--risk-safe-border);
+  background: #ECFDF3;
+  color: #027A48;
+  border: 1px solid #A6F4C5;
 }
 
 .aegis-badge-info {
-  background: var(--risk-info-bg);
-  color: var(--risk-info-text);
-  border: 1px solid var(--risk-info-border);
+  background: #EFF6FF;
+  color: #1E40AF;
+  border: 1px solid #BFDBFE;
 }
 
-/* Data Semantics Badges */
+/* Data Provenance Badges */
 .aegis-badge-source {
-  background: var(--badge-source-bg);
-  color: var(--badge-source-text);
-  border: 1px solid var(--badge-source-border);
+  background: #F1F5F9;
+  color: #334155;
+  border: 1px solid #CBD5E1;
 }
 
 .aegis-badge-derived {
-  background: var(--badge-derived-bg);
-  color: var(--badge-derived-text);
-  border: 1px solid var(--badge-derived-border);
+  background: #F0FDF4;
+  color: #166534;
+  border: 1px solid #BBF7D0;
 }
 
 .aegis-badge-aegis {
-  background: var(--badge-aegis-bg);
-  color: var(--badge-aegis-text);
-  border: 1px solid var(--badge-aegis-border);
+  background: #EFF6FF;
+  color: #1E40AF;
+  border: 1px solid #BFDBFE;
 }
 
 .aegis-badge-demo {
-  background: var(--badge-demo-bg);
-  color: var(--badge-demo-text);
-  border: 1px solid var(--badge-demo-border);
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #FDE68A;
 }
 
 /* Authority Badges */
@@ -527,42 +480,41 @@ html, body, #root {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 7px;
-  border-radius: 3px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  line-height: 1.3;
 }
 
 .authority-badge-state {
-  background: #312e81;
-  color: #e0e7ff;
-  border: 1px solid #4338ca;
+  background: #EEF2FF;
+  color: #312E81;
+  border: 1px solid #C7D2FE;
 }
 
 .authority-badge-district {
-  background: #0f172a;
-  color: #f8fafc;
-  border: 1px solid #334155;
+  background: #F1F5F9;
+  color: #0F172A;
+  border: 1px solid #CBD5E1;
 }
 
 .authority-badge-taluk {
-  background: #14532d;
-  color: #dcfce7;
-  border: 1px solid #166534;
+  background: #F0FDF4;
+  color: #14532D;
+  border: 1px solid #BBF7D0;
 }
 
 .authority-badge-field {
-  background: #78350f;
-  color: #fef3c7;
-  border: 1px solid #92400e;
+  background: #FFFBEB;
+  color: #78350F;
+  border: 1px solid #FDE68A;
 }
 
 .authority-badge-advisory {
-  background: #1e3a8a;
-  color: #dbeafe;
-  border: 1px solid #2563eb;
+  background: #EFF6FF;
+  color: #1E40AF;
+  border: 1px solid #BFDBFE;
 }
 
 /* ============================================================
@@ -572,89 +524,58 @@ html, body, #root {
 .aegis-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
-  border-radius: 6px;
-  box-shadow: var(--shadow-sm);
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
   overflow: hidden;
 }
 
 .aegis-card-header {
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #fafbfc;
+  background: var(--bg-surface-secondary);
 }
 
 .aegis-card-body {
-  padding: 14px;
+  padding: 16px;
 }
 
 .aegis-card-footer {
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-top: 1px solid var(--border-subtle);
-  background: #fafbfc;
-}
-
-/* Human Approval Banner */
-.human-approval-banner {
-  background: #fffbeb;
-  border: 1px solid #fde68a;
-  border-left: 4px solid #d97706;
-  border-radius: 4px;
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.human-approval-title {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #92400e;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.human-approval-subtitle {
-  font-size: 11.5px;
-  color: #78350f;
+  background: var(--bg-surface-secondary);
 }
 
 /* Status Indicator Dot */
 .status-dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   display: inline-block;
   flex-shrink: 0;
 }
 
 .status-dot-green {
-  background: #16a34a;
+  background: #16A34A;
 }
 
 .status-dot-amber {
-  background: #d97706;
+  background: #D97706;
 }
 
 .status-dot-red {
-  background: #dc2626;
+  background: #DC2626;
 }
 
 .status-dot-blue {
-  background: #2563eb;
+  background: #2563EB;
 }
 
-/* ============================================================
-   Fade-in utility
-   ============================================================ */
+/* Animations */
 @keyframes aegis-fade-in {
-  from { opacity: 0; transform: translateY(-4px); }
+  from { opacity: 0; transform: translateY(-3px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -662,9 +583,6 @@ html, body, #root {
   animation: aegis-fade-in 0.2s ease both;
 }
 
-/* ============================================================
-   Pulse (critical incident indicator)
-   ============================================================ */
 @keyframes aegis-ping {
   75%, 100% { transform: scale(2); opacity: 0; }
 }

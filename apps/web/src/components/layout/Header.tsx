@@ -45,37 +45,37 @@ export default function Header({ isSidebarCollapsed = false, onToggleSidebar }: 
   }, []);
 
   return (
-    <header className="aegis-header select-none h-12 px-3 sm:px-4 flex items-center justify-between gap-2 sm:gap-3 text-white z-50 shrink-0">
+    <header className="aegis-header select-none h-[52px] px-3 sm:px-4 flex items-center justify-between gap-3 text-white z-50 shrink-0">
       {/* Left Cluster: Menu Toggle, Brand & Subtitle */}
-      <div className="flex items-center gap-2 sm:gap-3 min-w-0 shrink">
+      <div className="flex items-center gap-3 min-w-0 shrink">
         {onToggleSidebar && (
           <button
             type="button"
             onClick={onToggleSidebar}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold transition cursor-pointer border shrink-0 backdrop-blur-md ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer border shrink-0 ${
               isSidebarCollapsed
-                ? 'bg-blue-600 text-white border-blue-400/40 shadow-xs'
+                ? 'bg-blue-600 text-white border-blue-500 shadow-xs'
                 : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
             }`}
-            title={isSidebarCollapsed ? 'Expand Navigation Menu (Ctrl+B)' : 'Collapse Navigation Menu (Ctrl+B)'}
+            title={isSidebarCollapsed ? 'Expand navigation menu (Ctrl+B)' : 'Collapse navigation menu (Ctrl+B)'}
             aria-label={isSidebarCollapsed ? 'Expand navigation menu' : 'Collapse navigation menu'}
           >
-            {isSidebarCollapsed ? <PanelLeft className="w-3.5 h-3.5" /> : <PanelLeftClose className="w-3.5 h-3.5" />}
-            <span className="hidden sm:inline text-[11px] font-bold">{isSidebarCollapsed ? 'Menu' : 'Menu'}</span>
+            {isSidebarCollapsed ? <PanelLeft className="w-4 h-4" /> : <PanelLeftClose className="w-4 h-4" />}
+            <span className="hidden sm:inline text-xs font-semibold">Menu</span>
           </button>
         )}
 
         {/* Brand & Subtitle */}
-        <div className="flex items-center gap-2 min-w-0">
-          <div className="flex items-center justify-center w-6 h-6 rounded-lg bg-gradient-to-b from-blue-500 to-blue-600 font-extrabold text-xs text-white tracking-wider shadow-sm border border-white/25 shrink-0">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-600 font-extrabold text-sm text-white tracking-wider shadow-sm border border-blue-400 shrink-0">
             A
           </div>
-          <div className="flex items-baseline gap-1.5 min-w-0">
-            <span className="font-extrabold text-sm text-white tracking-tight shrink-0">AEGIS</span>
-            <span className="text-[11px] text-white/95 font-medium truncate hidden xl:inline">
-              Disaster Relocation Decision Support · {isSdmaView ? 'Kerala State Disaster Management Authority' : 'Wayanad DDMA'}
+          <div className="flex items-baseline gap-2 min-w-0">
+            <span className="font-bold text-base text-white tracking-tight shrink-0">AEGIS</span>
+            <span className="text-[13px] text-slate-200 font-medium truncate hidden xl:inline">
+              Disaster relocation decision support · {isSdmaView ? 'Kerala State Disaster Management Authority' : 'Wayanad District DDMA'}
             </span>
-            <span className="text-[11px] text-white/95 font-medium truncate hidden md:inline xl:hidden">
+            <span className="text-[13px] text-slate-200 font-medium truncate hidden md:inline xl:hidden">
               · {isSdmaView ? 'Kerala SDMA' : 'Wayanad DDMA'}
             </span>
           </div>
@@ -83,25 +83,25 @@ export default function Header({ isSidebarCollapsed = false, onToggleSidebar }: 
       </div>
 
       {/* Center Cluster: Operational Level Switcher, Scenario Notice, Incident Pill */}
-      <div className="flex items-center gap-2 shrink-0">
+      <div className="flex items-center gap-2.5 shrink-0">
         {/* Operational Level Switcher */}
-        <div className="flex items-center bg-white/[0.10] border border-white/20 rounded-full p-0.5 text-[10.5px] backdrop-blur-md shadow-inner">
+        <div className="flex items-center bg-slate-800/90 border border-slate-700 rounded-lg p-0.5 text-xs shadow-inner">
           <Link
             to="/sdma"
-            className={`px-2.5 py-0.5 rounded-full font-medium transition whitespace-nowrap ${
+            className={`px-3 py-1 rounded-md text-[13px] font-semibold transition whitespace-nowrap ${
               isSdmaView
-                ? 'bg-white/25 text-white font-bold shadow-xs border border-white/30'
-                : 'text-white/90 hover:text-white hover:bg-white/15'
+                ? 'bg-blue-600 text-white shadow-xs'
+                : 'text-slate-300 hover:text-white hover:bg-slate-700/60'
             }`}
           >
             <span className="hidden sm:inline">State </span>(SDMA)
           </Link>
           <Link
             to="/ddma"
-            className={`px-2.5 py-0.5 rounded-full font-medium transition whitespace-nowrap ${
+            className={`px-3 py-1 rounded-md text-[13px] font-semibold transition whitespace-nowrap ${
               !isSdmaView
-                ? 'bg-white/25 text-white font-bold shadow-xs border border-white/30'
-                : 'text-white/90 hover:text-white hover:bg-white/15'
+                ? 'bg-blue-600 text-white shadow-xs'
+                : 'text-slate-300 hover:text-white hover:bg-slate-700/60'
             }`}
           >
             <span className="hidden sm:inline">District </span>(DDMA)
@@ -109,31 +109,30 @@ export default function Header({ isSidebarCollapsed = false, onToggleSidebar }: 
         </div>
 
         {/* Demonstration Scenario Notice */}
-        <div className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.08] border border-white/20 text-[10.5px] font-semibold text-white whitespace-nowrap backdrop-blur-md">
-          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
-          <span className="text-white/80 hidden lg:inline">Demonstration Scenario — </span>
-          <span className="text-white font-bold">Synthetic Data</span>
+        <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-200 whitespace-nowrap">
+          <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+          <span className="text-slate-300 hidden lg:inline">Demonstration scenario · </span>
+          <span className="text-white font-semibold">Synthetic data</span>
         </div>
 
         {/* Incident Status Pill */}
         {incidentName && (
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-rose-500/25 border border-rose-400/50 text-[10.5px] font-bold text-white shadow-xs whitespace-nowrap backdrop-blur-md">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0 animate-pulse"></span>
-            <span className="truncate max-w-[140px] sm:max-w-[220px]">Incident: {incidentName}</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-rose-950/80 border border-rose-700/80 text-xs font-bold text-rose-100 shadow-xs whitespace-nowrap">
+            <span className="w-2 h-2 rounded-full bg-red-500 shrink-0 animate-ping"></span>
+            <span className="truncate max-w-[160px] sm:max-w-[240px]">Incident: {incidentName}</span>
           </div>
         )}
       </div>
 
-      {/* Right Cluster: Timestamp */}
+      {/* Right Cluster: Timestamp with Tabular Numbers */}
       <div className="flex items-center gap-2 text-xs text-white shrink-0">
-        <span className="font-mono text-[11px] text-white font-semibold whitespace-nowrap hidden sm:inline">
+        <span className="font-mono text-xs text-slate-200 font-medium tabular-nums whitespace-nowrap hidden sm:inline">
           {dateTime}
         </span>
-        <span className="font-mono text-[10px] text-white font-semibold whitespace-nowrap sm:hidden">
+        <span className="font-mono text-xs text-slate-200 font-medium tabular-nums whitespace-nowrap sm:hidden">
           {dateTime.split(' ').slice(-2).join(' ')}
         </span>
       </div>
     </header>
   );
 }
-

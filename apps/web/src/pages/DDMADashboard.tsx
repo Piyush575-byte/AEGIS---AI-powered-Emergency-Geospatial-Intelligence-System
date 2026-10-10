@@ -443,51 +443,52 @@ export default function DDMADashboard() {
 
         {/* Selected Feature Card Popover on Map (if clicked) */}
         {selectedMapFeature && (
-          <div className="absolute top-16 right-14 z-[1000] glass-surface-light rounded-2xl p-3.5 max-w-xs shadow-xl text-xs text-[#172033]">
-            <div className="flex items-center justify-between gap-2 border-b border-slate-200/60 pb-1.5 mb-1.5">
-              <span className="font-bold text-[#718096] text-[10px] uppercase tracking-wider">
-                {selectedMapFeature.type} Details
+          <div className="absolute top-16 right-14 z-[1000] bg-white border border-slate-300 rounded-xl p-4 max-w-sm shadow-xl text-sm text-[#172033]">
+            <div className="flex items-center justify-between gap-2 border-b border-slate-200 pb-2 mb-2">
+              <span className="font-semibold text-slate-600 text-xs">
+                {selectedMapFeature.type} details
               </span>
               <button 
                 onClick={() => setSelectedMapFeature(null)} 
-                className="text-[#718096] hover:text-[#172033] font-bold text-xs cursor-pointer p-0.5 rounded hover:bg-black/5"
+                className="text-slate-500 hover:text-slate-900 font-bold text-sm cursor-pointer p-1 rounded hover:bg-slate-100"
+                aria-label="Close feature details"
               >
                 ✕
               </button>
             </div>
-            <div className="font-bold text-sm text-[#172033]">{selectedMapFeature.title}</div>
+            <div className="font-bold text-[16px] text-[#172033]">{selectedMapFeature.title}</div>
             {selectedMapFeature.subtitle && (
-              <div className="text-[#526174] font-medium mt-0.5">{selectedMapFeature.subtitle}</div>
+              <div className="text-slate-700 font-medium text-[14px] mt-1">{selectedMapFeature.subtitle}</div>
             )}
             {selectedMapFeature.details && (
-              <div className="text-[#718096] text-[11px] mt-1">{selectedMapFeature.details}</div>
+              <div className="text-slate-600 text-[13px] mt-1.5 leading-relaxed">{selectedMapFeature.details}</div>
             )}
           </div>
         )}
 
-        {/* 4. SMART FLOATING OPERATIONAL PANEL (Apple Maps Style) */}
+        {/* 4. SMART FLOATING OPERATIONAL PANEL */}
         <div 
-          className="absolute top-3 left-3 z-[1000] w-[340px] sm:w-[360px] max-w-[calc(100vw-24px)] aegis-floating-card overflow-hidden"
+          className="absolute top-3 left-3 z-[1000] w-[390px] sm:w-[440px] max-w-[calc(100vw-24px)] aegis-floating-card overflow-hidden"
           style={{
-            height: drawerCollapsed ? '46px' : (r1Blocked || isRecommendationPending || isV2Active || isViewingHistorical) ? undefined : 'auto',
-            maxHeight: drawerCollapsed ? '46px' : 'min(560px, calc(100vh - 140px))',
+            height: drawerCollapsed ? '50px' : (r1Blocked || isRecommendationPending || isV2Active || isViewingHistorical) ? undefined : 'auto',
+            maxHeight: drawerCollapsed ? '50px' : 'min(640px, calc(100vh - 120px))',
           }}
         >
           {/* Card Header & Collapse Toggle */}
-          <div className="px-4 py-3 border-b border-black/10 flex items-center justify-between shrink-0 bg-white/40 backdrop-blur-xs">
-            <div className="flex items-center gap-2">
-              <span className={`w-2 h-2 rounded-full ${isViewingHistorical ? 'bg-[#94A3B8]' : r1Blocked || isRecommendationPending ? 'bg-[#DC2626]' : 'bg-[#027A48]'}`}></span>
-              <span className="text-xs font-extrabold uppercase tracking-wider text-black">
-                {isViewingHistorical ? 'Historical Plan Inspection' : r1Blocked || isRecommendationPending ? 'Critical Operational Decision' : isV2Active ? 'Plan V2 Active' : 'Baseline Monitoring'}
+          <div className="px-4 py-3.5 border-b border-slate-200 flex items-center justify-between shrink-0 bg-slate-50">
+            <div className="flex items-center gap-2.5">
+              <span className={`w-2.5 h-2.5 rounded-full ${isViewingHistorical ? 'bg-slate-400' : r1Blocked || isRecommendationPending ? 'bg-red-600 animate-pulse' : 'bg-emerald-600'}`}></span>
+              <span className="text-[14px] font-bold text-[#172033]">
+                {isViewingHistorical ? 'Historical plan inspection' : r1Blocked || isRecommendationPending ? 'Critical operational decision' : isV2Active ? 'Plan V2 active' : 'Baseline monitoring'}
               </span>
             </div>
             <button
               onClick={() => setDrawerCollapsed(!drawerCollapsed)}
-              className="text-black hover:text-black p-1 rounded-md hover:bg-black/5 transition cursor-pointer"
+              className="text-slate-700 hover:text-black p-1.5 rounded-md hover:bg-slate-200 transition cursor-pointer"
               title={drawerCollapsed ? 'Expand panel' : 'Collapse panel'}
               aria-label={drawerCollapsed ? 'Expand panel' : 'Collapse panel'}
             >
-              {drawerCollapsed ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
+              {drawerCollapsed ? <ChevronDown className="w-5 h-5" /> : <ChevronUp className="w-5 h-5" />}
             </button>
           </div>
 
@@ -495,182 +496,187 @@ export default function DDMADashboard() {
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain">
               {/* Historical Inspection Notice if inspecting Plan V1 */}
               {isViewingHistorical && (
-                <div className="p-3 m-3 mb-0 bg-[#FEF3C7] border border-[#FCD34D] rounded-xl text-xs space-y-1">
-                  <div className="flex items-center justify-between font-bold text-[#92400E]">
-                    <span className="flex items-center gap-1.5">
-                      <History className="w-3.5 h-3.5 text-[#B45309]" />
-                      Viewing Historical Plan V{viewingVersion}
+                <div className="p-3.5 m-3.5 mb-0 bg-amber-50 border border-amber-300 rounded-xl text-sm space-y-1.5">
+                  <div className="flex items-center justify-between font-bold text-amber-900">
+                    <span className="flex items-center gap-2">
+                      <History className="w-4 h-4 text-amber-700" />
+                      <span>Viewing historical Plan V{viewingVersion}</span>
                     </span>
                     <button
                       type="button"
                       onClick={() => handleSelectPlan(planVersion)}
-                      className="underline font-bold text-[#78350F] hover:text-black cursor-pointer text-[11px]"
+                      className="underline font-bold text-amber-900 hover:text-black cursor-pointer text-xs"
                     >
-                      Return to Active Plan V{planVersion}
+                      Return to active Plan V{planVersion}
                     </button>
                   </div>
-                  <p className="text-[11px] text-[#92400E]/90 leading-tight">
-                    Inspecting superseded Plan V1 baseline (Chooralmala → Meppadi via R1). The active statutory operational plan remains Plan V2.
+                  <p className="text-[13px] text-amber-900 leading-relaxed">
+                    Inspecting superseded Plan V1 baseline (Chooralmala → Meppadi via Route R1). Active statutory operational plan is Plan V2.
                   </p>
                 </div>
               )}
-              {/* STATE A: BASELINE MONITORING (Extremely Compact, ~140px, Zero Clutter) */}
+
+              {/* STATE A: BASELINE MONITORING */}
               {!r1Blocked && !isRecommendationPending && !isV2Active && (
-                <div className="p-4 space-y-3">
+                <div className="p-5 space-y-3.5">
                   <div>
-                    <h2 className="text-sm font-extrabold text-black">
-                      Chooralmala → Meppadi
+                    <h2 className="text-[17px] font-bold text-[#172033]">
+                      Chooralmala → Meppadi corridor
                     </h2>
-                    <div className="text-xs text-black font-semibold mt-0.5">
+                    <div className="text-[14px] text-slate-700 font-medium mt-1">
                       120 people assigned · Meppadi Community Hall via Route R1
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-2 border-t border-black/10 text-xs">
-                    <div className="flex items-center gap-1.5 text-[#027A48] font-bold">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#027A48]"></span>
+                  <div className="flex items-center justify-between pt-3 border-t border-slate-200 text-sm">
+                    <div className="flex items-center gap-2 text-[#027A48] font-semibold">
+                      <span className="w-2 h-2 rounded-full bg-[#027A48]"></span>
                       <span>Route clear</span>
                     </div>
-                    <span className="text-[11px] text-black font-medium">
-                      No emergency decision required.
+                    <span className="text-[13px] text-slate-600 font-medium">
+                      No emergency decision required
                     </span>
                   </div>
                 </div>
               )}
 
-              {/* STATE B: INCIDENT & RECOMMENDATION (R1 Fails or Shelter Capacity Lost or Cascade → Intelligently Expands) */}
+              {/* STATE B: INCIDENT & RECOMMENDATION */}
               {(r1Blocked || isRecommendationPending) && !isV2Active && (
-                <div className="p-4 space-y-3 text-xs">
-                  {/* Incident Alert Block */}
-                  <div className="p-3 rounded-xl bg-[#FEF2F2] border border-[#FECACA] space-y-1.5 shadow-xs">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#B42318] flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-ping"></span>
-                        🔴 CRITICAL INCIDENT DETECTED
+                <div className="p-5 space-y-4 text-sm">
+                  {/* 1. Incident Alert Block */}
+                  <div className="p-4 rounded-xl bg-red-50/80 border border-red-200 space-y-2.5 shadow-xs">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-xs font-bold bg-red-100 text-red-900 border border-red-200 px-2.5 py-0.5 rounded-md flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+                        Critical incident detected
                       </span>
-                      <span className="text-[10px] font-mono text-black font-bold">
+                      <span className="text-xs font-mono tabular-nums text-slate-700 font-semibold">
                         {reportedTimeStr}
                       </span>
                     </div>
+
                     <div>
-                      <h2 className="text-sm font-extrabold text-[#B42318] tracking-tight">
-                        {incident?.incident_type ? incident.incident_type.toUpperCase().replace(/_/g, ' ') : (r1Blocked ? 'BRIDGE FAILURE' : 'GROUND DISRUPTION DETECTED')}
+                      <h2 className="text-[17px] font-extrabold text-[#991B1B] leading-tight">
+                        {incident?.incident_type ? incident.incident_type.replace(/_/g, ' ') : (r1Blocked ? 'Bridge failure on Route R1' : 'Ground disruption detected')}
                       </h2>
-                      <div className="text-xs text-[#7A271A] font-bold">
-                        Route R1 — Chooralmala → Meppadi corridor
+                      <div className="text-[14px] text-red-900 font-semibold mt-0.5">
+                        Route R1 — Chooralmala to Meppadi corridor
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-2 pt-1 border-t border-[#FECACA]/60 text-[10.5px]">
+
+                    <div className="grid grid-cols-2 gap-2 pt-2 border-t border-red-200 text-[13px]">
                       <div>
-                        <span className="text-black block text-[9.5px] uppercase font-extrabold">Source Feed</span>
-                        <span className="text-black font-semibold">
-                          {incident?.source || 'Simulation / External Field Feed'}
+                        <span className="text-slate-700 block text-xs font-medium">Source feed</span>
+                        <span className="text-slate-900 font-semibold">
+                          {incident?.source || 'Field sensor & telemetry'}
                         </span>
                       </div>
                       <div>
-                        <span className="text-black block text-[9.5px] uppercase font-extrabold">Corridor Status</span>
-                        <span className="px-1.5 py-0.5 rounded bg-[#FEE2E2] font-bold text-[#B42318] inline-block">
-                          {r1Blocked ? 'BLOCKED' : 'DISRUPTED'}
+                        <span className="text-slate-700 block text-xs font-medium">Corridor status</span>
+                        <span className="px-2 py-0.5 rounded bg-red-100 font-bold text-red-900 border border-red-200 inline-block text-xs">
+                          {r1Blocked ? 'Blocked' : 'Disrupted'}
                         </span>
                       </div>
                     </div>
-                    <div className="text-[11px] text-black font-semibold italic">
-                      {incident?.description || (r1Blocked ? 'Culvert bridge severed at KM 4.2' : 'Operational condition change detected')}
+
+                    <div className="text-[13px] text-slate-800 italic pt-1 border-t border-red-100">
+                      {incident?.description || (r1Blocked ? 'Culvert bridge severed at KM 4.2 due to flash ground movement.' : 'Operational condition change detected in corridor.')}
                     </div>
                   </div>
 
-                  {/* Impact Summary */}
-                  <div className="space-y-0.5">
+                  {/* 2. Impact Summary */}
+                  <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
                     <div className="flex items-baseline justify-between">
-                      <span className="text-xs font-extrabold text-[#172033]">
-                        {affectedCount} PEOPLE AFFECTED
+                      <span className="text-[15px] font-bold text-[#172033]">
+                        {affectedCount} people affected
                       </span>
-                      <span className="text-[11px] font-semibold text-[#B42318]">
-                        ({affectedCount} Affected Evacuees)
+                      <span className="text-[13px] font-semibold text-red-700 tabular-nums">
+                        Evacuation assignment invalidated
                       </span>
                     </div>
-                    <p className="text-xs text-[#526174]">
-                      Existing Plan V1 assignment invalidated · Immediate re-assessment required.
+                    <p className="text-[13px] text-slate-700 leading-snug">
+                      Primary Route R1 access impassable. Immediate relocation reassignment formulated.
                     </p>
                   </div>
 
-                  {/* Recommendation Card */}
-                  <div className="p-3 bg-[#EFF6FF] border border-[#BFDBFE] rounded-xl space-y-2 shadow-xs">
+                  {/* 3. Recommendation Card */}
+                  <div className="p-4 bg-blue-50/70 border border-blue-200 rounded-xl space-y-3 shadow-xs">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#2563A6]">
-                        Recommended Relocation
+                      <span className="text-xs font-bold text-blue-900 bg-blue-100 px-2 py-0.5 rounded border border-blue-200">
+                        Recommended relocation
                       </span>
-                      <span className="text-[9.5px] font-bold px-1.5 py-0.5 rounded bg-[#DBEAFE] text-[#174A7C]">
-                        Rank #1 Alternative
+                      <span className="text-xs font-semibold px-2 py-0.5 rounded bg-blue-100 text-blue-900">
+                        Rank #1 alternative
                       </span>
                     </div>
+
                     <div>
-                      <div className="text-sm font-bold text-[#172033]">
+                      <div className="text-[16px] font-bold text-[#172033] leading-snug">
                         {recommendation?.recommended_shelter?.name || 'Vythiri Government Higher Secondary School (Vythiri GHSS)'}
                       </div>
-                      <div className="text-xs font-semibold text-[#027A48] flex items-center gap-1 mt-0.5">
-                        <Compass className="w-3.5 h-3.5" />
-                        <span>{recommendation?.recommended_route?.code ? `Via Route ${recommendation.recommended_route.code}` : 'Via Route R4'}</span>
+                      <div className="text-[14px] font-semibold text-[#027A48] flex items-center gap-1.5 mt-1">
+                        <Compass className="w-4 h-4" />
+                        <span>{recommendation?.recommended_route?.code ? `Via Route ${recommendation.recommended_route.code}` : 'Via Route R4 bypass corridor'}</span>
                       </div>
                     </div>
 
-                    {/* Key Supporting Facts */}
-                    <div className="pt-2 border-t border-[#BFDBFE] grid grid-cols-3 gap-2 text-[11px]">
+                    {/* Key Supporting Facts Matrix */}
+                    <div className="pt-2.5 border-t border-blue-200 grid grid-cols-3 gap-2 text-[13px]">
                       <div>
-                        <span className="text-[#718096] block text-[10px]">Headroom</span>
-                        <strong className="text-[#027A48] font-bold">+205 capacity</strong>
+                        <span className="text-slate-600 block text-xs">Available capacity</span>
+                        <strong className="text-[#027A48] font-bold tabular-nums">+205 beds</strong>
                       </div>
                       <div>
-                        <span className="text-[#718096] block text-[10px]">Corridor</span>
-                        <strong className="text-[#172033] font-semibold">
+                        <span className="text-slate-600 block text-xs">Route distance</span>
+                        <strong className="text-[#172033] font-semibold tabular-nums">
                           {recommendation?.route_details?.distance_km ? `${recommendation.route_details.distance_km} km clear` : '16.4 km clear'}
                         </strong>
                       </div>
                       <div>
-                        <span className="text-[#718096] block text-[10px]">Medical</span>
-                        <strong className="text-[#027A48] font-bold">Medical support</strong>
+                        <span className="text-slate-600 block text-xs">Medical support</span>
+                        <strong className="text-[#027A48] font-bold">Available on-site</strong>
                       </div>
                     </div>
 
                     <button
                       onClick={() => setShowReviewModal(true)}
-                      className="w-full mt-1 bg-[#FFFFFF] hover:bg-[#F8FAFC] border border-[#BFDBFE] text-[#174A7C] font-semibold text-xs py-1.5 px-3 rounded-lg flex items-center justify-center gap-1.5 transition cursor-pointer shadow-xs"
+                      className="w-full mt-1 bg-white hover:bg-slate-50 border border-blue-300 text-blue-900 font-semibold text-[14px] py-2.5 px-3 rounded-lg flex items-center justify-center gap-2 transition cursor-pointer shadow-xs min-h-[42px]"
                     >
                       <span>Review recommendation & technical evidence</span>
-                      <ChevronRight className="w-3.5 h-3.5 text-[#2563A6]" />
+                      <ChevronRight className="w-4 h-4 text-blue-700" />
                     </button>
                   </div>
 
-                  {/* Primary Decision Actions */}
-                  <div className="space-y-2 pt-1">
+                  {/* 4. Primary Statutory Decision Actions */}
+                  <div className="space-y-2.5 pt-1">
                     {isRecommendationRejected ? (
-                      <div className="p-3 bg-[#FEF2F2] border border-[#FECACA] rounded-xl text-center space-y-1">
-                        <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-[#B42318]">
-                          <XCircle className="w-4 h-4 text-[#B42318]" />
-                          <span>RECOMMENDATION REJECTED</span>
+                      <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-center space-y-1">
+                        <div className="flex items-center justify-center gap-2 text-sm font-bold text-red-800">
+                          <XCircle className="w-4 h-4 text-red-700" />
+                          <span>Recommendation rejected</span>
                         </div>
-                        <p className="text-[11px] text-[#7A271A]">
-                          Declined by statutory authority. Baseline Plan V1 remains in effect. A new scenario or field reassessment must be initiated.
+                        <p className="text-[13px] text-red-900">
+                          Declined by statutory authority. Baseline Plan V1 remains in effect. Field reassessment required.
                         </p>
                       </div>
                     ) : isChangesRequested ? (
-                      <div className="space-y-2">
-                        <div className="p-3 bg-[#FFFAEB] border border-[#FEDF89] rounded-xl text-center space-y-1">
-                          <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-[#B54708]">
-                            <Edit3 className="w-4 h-4 text-[#B54708]" />
-                            <span>CHANGES REQUESTED</span>
+                      <div className="space-y-2.5">
+                        <div className="p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-center space-y-1">
+                          <div className="flex items-center justify-center gap-2 text-sm font-bold text-amber-800">
+                            <Edit3 className="w-4 h-4 text-amber-700" />
+                            <span>Changes requested</span>
                           </div>
-                          <p className="text-[11px] text-[#7A271A]">
-                            Stipulations transmitted to field & GIS units. Plan V2 has not been approved. Review evidence or submit revised operational concurrence.
+                          <p className="text-[13px] text-amber-900">
+                            Directives transmitted to field command. Plan V2 has not been authorized.
                           </p>
                         </div>
                         <button
                           onClick={() => handleApprove()}
                           disabled={isProcessing}
-                          className="w-full bg-[#2563A6] hover:bg-[#1D4F80] active:bg-[#174A7C] text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-sm flex items-center justify-center gap-2 transition disabled:opacity-50 cursor-pointer"
+                          className="w-full bg-[#1D5B99] hover:bg-[#154575] text-white font-bold text-[15px] py-3 px-4 rounded-xl shadow-sm flex items-center justify-center gap-2 transition disabled:opacity-50 cursor-pointer min-h-[46px]"
                         >
-                          <CheckCircle2 className="w-4 h-4 text-white" />
-                          <span>APPROVE WITH STIPULATIONS</span>
+                          <CheckCircle2 className="w-5 h-5 text-white" />
+                          <span>Approve with stipulations</span>
                         </button>
                       </div>
                     ) : (
@@ -678,27 +684,27 @@ export default function DDMADashboard() {
                         <button
                           onClick={() => handleApprove()}
                           disabled={isProcessing}
-                          className="w-full bg-[#2563A6] hover:bg-[#1D4F80] active:bg-[#174A7C] text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-sm flex items-center justify-center gap-2 transition disabled:opacity-50 cursor-pointer"
+                          className="w-full bg-[#1D5B99] hover:bg-[#154575] text-white font-bold text-[15px] py-3 px-4 rounded-xl shadow-sm flex items-center justify-center gap-2 transition disabled:opacity-50 cursor-pointer min-h-[46px]"
                         >
-                          <CheckCircle2 className="w-4 h-4 text-white" />
-                          <span>APPROVE RECOMMENDATION</span>
+                          <CheckCircle2 className="w-5 h-5 text-white" />
+                          <span>Approve recommendation</span>
                         </button>
 
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2.5">
                           <button
                             onClick={() => setShowRequestChangesModal(true)}
                             disabled={isProcessing}
-                            className="flex-1 bg-white hover:bg-[#F8FAFC] border border-[#D9E1EA] text-[#172033] font-medium text-xs py-1.5 px-2 rounded-lg flex items-center justify-center gap-1 transition disabled:opacity-50 cursor-pointer shadow-xs"
+                            className="flex-1 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-semibold text-[14px] py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition disabled:opacity-50 cursor-pointer shadow-xs min-h-[42px]"
                           >
-                            <Edit3 className="w-3.5 h-3.5 text-[#526174]" />
+                            <Edit3 className="w-4 h-4 text-slate-600" />
                             <span>Request changes</span>
                           </button>
                           <button
                             onClick={() => setShowRejectModal(true)}
                             disabled={isProcessing}
-                            className="flex-1 bg-[#FEF2F2] hover:bg-[#FEE2E2] border border-[#FECACA] text-[#B42318] font-medium text-xs py-1.5 px-2 rounded-lg flex items-center justify-center gap-1 transition disabled:opacity-50 cursor-pointer shadow-xs"
+                            className="flex-1 bg-red-50 hover:bg-red-100 border border-red-200 text-red-800 font-semibold text-[14px] py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition disabled:opacity-50 cursor-pointer shadow-xs min-h-[42px]"
                           >
-                            <XCircle className="w-3.5 h-3.5 text-[#B42318]" />
+                            <XCircle className="w-4 h-4 text-red-700" />
                             <span>Reject</span>
                           </button>
                         </div>
@@ -706,64 +712,63 @@ export default function DDMADashboard() {
                     )}
                   </div>
 
-
-                  {/* Plan Evolution Summary */}
-                  <div className="pt-2 border-t border-[#D9E1EA] text-[11px] space-y-1">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#718096]">
-                      Plan Evolution
+                  {/* 5. Plan Evolution Summary */}
+                  <div className="pt-2.5 border-t border-slate-200 text-sm space-y-1.5">
+                    <div className="text-xs font-semibold text-slate-700">
+                      Plan evolution
                     </div>
-                    <div className="p-2 rounded-lg bg-[#F8FAFC] border border-[#D9E1EA] flex items-center justify-between">
+                    <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between">
                       <div>
-                        <span className="font-mono font-bold text-[#172033]">PLAN V1</span>
-                        <div className="text-[#526174] text-[10.5px]">Chooralmala → Meppadi via R1</div>
+                        <span className="font-bold text-[14px] text-[#172033]">Plan V1</span>
+                        <div className="text-slate-700 text-[13px]">Chooralmala → Meppadi via Route R1</div>
                         {planDiff?.differences?.cause && (
-                          <div className="text-[10px] text-[#718096] font-mono mt-0.5">
+                          <div className="text-xs text-slate-600 font-mono mt-0.5">
                             Cause: {planDiff.differences.cause}
                           </div>
                         )}
                       </div>
-                      <span className="text-[9.5px] font-bold px-1.5 py-0.5 rounded bg-[#FEF2F2] text-[#B42318] border border-[#FECACA]">
-                        INVALIDATED
+                      <span className="text-xs font-semibold px-2 py-0.5 rounded bg-red-100 text-red-800 border border-red-200">
+                        Invalidated
                       </span>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* STATE C: PLAN V2 COMMITTED (Confirmed Safe State) */}
+              {/* STATE C: PLAN V2 COMMITTED */}
               {isV2Active && (
-                <div className="p-4 space-y-3 text-xs">
-                  <div className="p-3 bg-[#ECFDF3] border border-[#ABEFC6] rounded-xl space-y-1.5">
+                <div className="p-5 space-y-4 text-sm">
+                  <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl space-y-2">
                     <div className="flex items-center gap-2 text-[#027A48] font-bold">
-                      <CheckCircle2 className="w-4 h-4 text-[#027A48]" />
-                      <span className="text-sm">PLAN V2 COMMITTED & ACTIVE</span>
+                      <CheckCircle2 className="w-5 h-5 text-[#027A48]" />
+                      <span className="text-[16px]">Plan V2 committed & active</span>
                     </div>
-                    <p className="text-[#027A48] text-xs leading-relaxed">
+                    <p className="text-slate-800 text-[14px] leading-relaxed">
                       120 evacuees from Chooralmala rerouted to Vythiri Government Higher Secondary School (Vythiri GHSS) via Route R4.
                     </p>
-                    <div className="text-[10.5px] text-[#027A48]/80 font-mono pt-1">
-                      {"Chooralmala -> Vythiri GHSS -> R4 active"}
+                    <div className="text-xs text-emerald-800 font-mono pt-1">
+                      Chooralmala → Vythiri GHSS → Route R4 active
                     </div>
                   </div>
 
-                  <div className="p-2 rounded-lg bg-[#F8FAFC] border border-[#D9E1EA] flex items-center justify-between text-[11px]">
+                  <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between text-sm">
                     <div>
-                      <span className="font-mono font-bold text-[#172033]">PLAN V1</span>
-                      <div className="text-[#718096] text-[10.5px]">Preserved as statutory baseline</div>
+                      <span className="font-bold text-[#172033]">Plan V1</span>
+                      <div className="text-slate-600 text-xs">Preserved as statutory baseline</div>
                     </div>
-                    <span className="text-[9.5px] font-bold px-1.5 py-0.5 rounded bg-[#F1F5F9] text-[#475569]">
-                      HISTORICAL
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded bg-slate-200 text-slate-800">
+                      Historical
                     </span>
                   </div>
 
-                  <div className="pt-1 flex items-center justify-between text-xs">
-                    <span className="text-[#718096]">Plan V1 Preserved as Historical</span>
+                  <div className="pt-1 flex items-center justify-between text-sm">
+                    <span className="text-slate-600 text-xs">Plan V1 preserved in audit ledger</span>
                     <Link
                       to="/audit"
-                      className="text-[#2563A6] hover:underline font-semibold flex items-center gap-1"
+                      className="text-blue-800 hover:underline font-semibold flex items-center gap-1"
                     >
-                      <span>View Audit Ledger</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
+                      <span>View audit ledger</span>
+                      <ChevronRight className="w-4 h-4" />
                     </Link>
                   </div>
                 </div>

@@ -183,11 +183,11 @@ export function extractClusterPoints(
 }
 
 /**
- * Creates Apple Maps-style state-level aggregate marker pill.
+ * Creates aggregate state-level marker pill with clear typography and tabular numerals.
  */
 export function createStateClusterIcon(cluster: MapCluster): L.DivIcon {
   const hasAffected = cluster.affectedCount > 0;
-  const badgeBorder = hasAffected ? '#FECACA' : '#D9E1EA';
+  const badgeBorder = hasAffected ? '#FECACA' : '#CBD5E1';
   const badgeBg = '#FFFFFF';
   const accentDot = hasAffected ? '#DC2626' : '#2563A6';
 
@@ -204,20 +204,20 @@ export function createStateClusterIcon(cluster: MapCluster): L.DivIcon {
         border: 1.5px solid ${badgeBorder};
         box-shadow: 0 4px 16px rgba(23,32,51,0.14);
         border-radius: 20px;
-        padding: 5px 12px;
+        padding: 6px 14px;
         display: flex;
         align-items: center;
         gap: 8px;
         white-space: nowrap;
         transition: transform 0.15s ease;
       ">
-        <span style="width: 8px; height: 8px; border-radius: 50%; background: ${accentDot};"></span>
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: ${accentDot}; flex-shrink: 0;"></span>
         <div style="display: flex; flex-direction: column;">
-          <span style="font-size: 11.5px; font-weight: 800; color: #172033; letter-spacing: -0.01em;">
+          <span style="font-size: 13px; font-weight: 700; color: #172033; letter-spacing: -0.01em;">
             ${cluster.district || 'District'}
           </span>
-          <span style="font-size: 10px; font-weight: 500; color: #526174;">
-            ${cluster.totalPopulation > 0 ? `${cluster.totalPopulation.toLocaleString()} evacuees · ` : ''}${cluster.count} zones${cluster.affectedCount > 0 ? ` · <strong style="color:#B42318">${cluster.affectedCount} at-risk</strong>` : ''}
+          <span style="font-size: 12px; font-weight: 500; color: #475569; font-variant-numeric: tabular-nums;">
+            ${cluster.totalPopulation > 0 ? `${cluster.totalPopulation.toLocaleString()} evacuees · ` : ''}${cluster.count} zones${cluster.affectedCount > 0 ? ` · <strong style="color:#B42318; font-weight:700;">${cluster.affectedCount} at-risk</strong>` : ''}
           </span>
         </div>
       </div>
@@ -228,13 +228,13 @@ export function createStateClusterIcon(cluster: MapCluster): L.DivIcon {
   return L.divIcon({
     className: 'aegis-state-cluster',
     html,
-    iconSize: [200, 42],
-    iconAnchor: [100, 42],
+    iconSize: [220, 48],
+    iconAnchor: [110, 48],
   });
 }
 
 /**
- * Creates District-level cluster circular badge.
+ * Creates District-level cluster circular badge (44x44px target).
  */
 export function createDistrictClusterIcon(cluster: MapCluster): L.DivIcon {
   const hasAffected = cluster.affectedCount > 0;
@@ -262,16 +262,16 @@ export function createDistrictClusterIcon(cluster: MapCluster): L.DivIcon {
         border: 2px solid #ffffff;
         box-shadow: 0 4px 12px rgba(0,0,0,0.22);
         border-radius: 50%;
-        width: 38px;
-        height: 38px;
+        width: 44px;
+        height: 44px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         transition: transform 0.15s ease;
       ">
-        <span style="font-size: 11px; font-weight: 800; line-height: 1;">${label}</span>
-        <span style="font-size: 8.5px; opacity: 0.9; font-weight: 600; line-height: 1; margin-top: 1px;">${sub}</span>
+        <span style="font-size: 13px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums;">${label}</span>
+        <span style="font-size: 11px; opacity: 0.95; font-weight: 600; line-height: 1; margin-top: 2px; font-variant-numeric: tabular-nums;">${sub}</span>
       </div>
     </div>
   `;
@@ -279,21 +279,21 @@ export function createDistrictClusterIcon(cluster: MapCluster): L.DivIcon {
   return L.divIcon({
     className: 'aegis-district-cluster',
     html,
-    iconSize: [38, 38],
-    iconAnchor: [19, 19],
+    iconSize: [44, 44],
+    iconAnchor: [22, 22],
   });
 }
 
 /**
  * Minimal Habitation Icon:
  * Operational view (zoom >= 14):
- * - Primary/Canonical (Chooralmala): clean crisp location pill, NO permanent pax text.
- * - Other habitations: clean, calm 7px circle dot (NO permanent labels, tooltip on hover).
+ * - Primary/Canonical (Chooralmala): clean crisp location pill, 12.5px text.
+ * - Other habitations: clean, calm dot.
  */
 export function createHabitationIcon(hab: ClusterPoint, isPriority: boolean = false): L.DivIcon {
   if (isPriority) {
     const dotColor = hab.isCritical ? '#DC2626' : '#2563A6';
-    const border = hab.isCritical ? '#FECACA' : '#D9E1EA';
+    const border = hab.isCritical ? '#FECACA' : '#CBD5E1';
     const html = `
       <div style="
         display: flex;
@@ -306,17 +306,17 @@ export function createHabitationIcon(hab: ClusterPoint, isPriority: boolean = fa
           background: #FFFFFF;
           color: #172033;
           border: 1.5px solid ${border};
-          border-radius: 14px;
-          padding: 3px 8px;
-          font-size: 11px;
+          border-radius: 16px;
+          padding: 4px 10px;
+          font-size: 12.5px;
           font-weight: 700;
-          box-shadow: 0 3px 10px rgba(23,32,51,0.12);
+          box-shadow: 0 3px 10px rgba(23,32,51,0.14);
           display: flex;
           align-items: center;
-          gap: 5px;
+          gap: 6px;
           white-space: nowrap;
         ">
-          <span style="width: 7px; height: 7px; border-radius: 50%; background: ${dotColor};"></span>
+          <span style="width: 7px; height: 7px; border-radius: 50%; background: ${dotColor}; flex-shrink: 0;"></span>
           <span>${hab.name}</span>
         </div>
         <div style="width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid ${border};"></div>
@@ -325,12 +325,12 @@ export function createHabitationIcon(hab: ClusterPoint, isPriority: boolean = fa
     return L.divIcon({
       className: 'aegis-hab-priority',
       html,
-      iconSize: [140, 30],
-      iconAnchor: [70, 30],
+      iconSize: [150, 34],
+      iconAnchor: [75, 34],
     });
   }
 
-  // Background habitations: small 8px dot with pulse if critical
+  // Background habitations: small 10px dot with pulse if critical
   const color = hab.isCritical ? '#DC2626' : '#64748B';
   const html = `
     <div style="
@@ -354,9 +354,10 @@ export function createHabitationIcon(hab: ClusterPoint, isPriority: boolean = fa
 /**
  * Shelter Icon:
  * Operational view (zoom >= 14):
- * - Recommended: highlighted green pill with headroom (+headroom)
- * - Severed / Full: soft red pill
- * - Other: compact clean 18px home symbol (NO permanent giant card)
+ * - Recommended: highlighted green pill with headroom (+headroom) in 12.5px font
+ * - Severed / Full: soft red pill in 12.5px font
+ * - Assigned: blue pill in 12.5px font
+ * - Other: compact clean 24px home symbol
  */
 export function createShelterIcon(
   shelter: ClusterPoint,
@@ -379,10 +380,11 @@ export function createShelterIcon(
           background: #ECFDF3;
           color: #027A48;
           border: 1.5px solid #ABEFC6;
-          border-radius: 14px;
-          padding: 3px 8px;
-          font-size: 10.5px;
+          border-radius: 16px;
+          padding: 4px 10px;
+          font-size: 12.5px;
           font-weight: 700;
+          font-variant-numeric: tabular-nums;
           box-shadow: 0 3px 10px rgba(2,122,72,0.16);
           white-space: nowrap;
         ">
@@ -394,8 +396,8 @@ export function createShelterIcon(
     return L.divIcon({
       className: 'aegis-shelter-rec',
       html,
-      iconSize: [160, 28],
-      iconAnchor: [80, 28],
+      iconSize: [170, 32],
+      iconAnchor: [85, 32],
     });
   }
 
@@ -412,9 +414,9 @@ export function createShelterIcon(
           background: #FEF2F2;
           color: #B42318;
           border: 1.5px solid #FECACA;
-          border-radius: 14px;
-          padding: 3px 8px;
-          font-size: 10.5px;
+          border-radius: 16px;
+          padding: 4px 10px;
+          font-size: 12.5px;
           font-weight: 700;
           box-shadow: 0 3px 10px rgba(180,35,24,0.12);
           white-space: nowrap;
@@ -427,8 +429,8 @@ export function createShelterIcon(
     return L.divIcon({
       className: 'aegis-shelter-sev',
       html,
-      iconSize: [160, 28],
-      iconAnchor: [80, 28],
+      iconSize: [170, 32],
+      iconAnchor: [85, 32],
     });
   }
 
@@ -445,9 +447,9 @@ export function createShelterIcon(
           background: #EFF6FF;
           color: #174A7C;
           border: 1.5px solid #BFDBFE;
-          border-radius: 14px;
-          padding: 3px 8px;
-          font-size: 10.5px;
+          border-radius: 16px;
+          padding: 4px 10px;
+          font-size: 12.5px;
           font-weight: 700;
           box-shadow: 0 3px 10px rgba(23,74,124,0.12);
           white-space: nowrap;
@@ -460,16 +462,16 @@ export function createShelterIcon(
     return L.divIcon({
       className: 'aegis-shelter-assigned',
       html,
-      iconSize: [160, 28],
-      iconAnchor: [80, 28],
+      iconSize: [170, 32],
+      iconAnchor: [85, 32],
     });
   }
 
-  // Other shelters: clean 18px compact home badge
+  // Other shelters: clean 24px compact home badge
   const html = `
     <div style="
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       border-radius: 6px;
       background: #059669;
       color: #FFFFFF;
@@ -478,7 +480,7 @@ export function createShelterIcon(
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 900;
       cursor: pointer;
     ">
@@ -488,7 +490,7 @@ export function createShelterIcon(
   return L.divIcon({
     className: 'aegis-shelter-clean',
     html,
-    iconSize: [20, 20],
-    iconAnchor: [10, 10],
+    iconSize: [24, 24],
+    iconAnchor: [12, 12],
   });
 }

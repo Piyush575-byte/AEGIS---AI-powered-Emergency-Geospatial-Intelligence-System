@@ -27,10 +27,10 @@ export interface DataSemanticBadgeProps {
 
 export const DataSemanticBadge: React.FC<DataSemanticBadgeProps> = ({ type, className = '' }) => {
   const configs: Record<DataClassification, { label: string; styleClass: string }> = {
-    SOURCE_DATA: { label: 'SOURCE DATA', styleClass: 'aegis-badge-source' },
-    DERIVED_DATA: { label: 'DERIVED DATA', styleClass: 'aegis-badge-derived' },
-    AEGIS_RECOMMENDATION: { label: 'AEGIS ADVISORY', styleClass: 'aegis-badge-aegis' },
-    DEMO_DATA: { label: 'DEMO / SIMULATION', styleClass: 'aegis-badge-demo' },
+    SOURCE_DATA: { label: 'Source data', styleClass: 'aegis-badge-source' },
+    DERIVED_DATA: { label: 'Derived data', styleClass: 'aegis-badge-derived' },
+    AEGIS_RECOMMENDATION: { label: 'AEGIS advisory', styleClass: 'aegis-badge-aegis' },
+    DEMO_DATA: { label: 'Simulation data', styleClass: 'aegis-badge-demo' },
   };
 
   const { label, styleClass } = configs[type];

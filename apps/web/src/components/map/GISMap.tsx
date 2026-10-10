@@ -690,53 +690,45 @@ export default function GISMap({
 
       {/* Embedded CSS for clean tooltips & labels */}
       <style>{`
-        .aegis-map-label {
-          background: rgba(255, 255, 255, 0.90);
-          backdrop-filter: blur(16px) saturate(140%);
-          -webkit-backdrop-filter: blur(16px) saturate(140%);
-          border: 1px solid rgba(255, 255, 255, 0.85);
-          color: #0f172a;
-          font-family: Inter, sans-serif;
-          font-size: 10px;
+        .aegis-road-label {
+          background: rgba(255, 255, 255, 0.95);
+          border: 1px solid rgba(148, 163, 184, 0.9);
+          color: #172033;
+          font-family: Inter, system-ui, sans-serif;
+          font-size: 12px;
           font-weight: 700;
-          padding: 2.5px 6px;
-          border-radius: 6px;
-          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+          padding: 3px 8px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
           white-space: nowrap;
         }
         .aegis-shelter-label {
-          background: rgba(240, 253, 244, 0.90);
-          backdrop-filter: blur(16px) saturate(140%);
-          -webkit-backdrop-filter: blur(16px) saturate(140%);
-          border: 1px solid rgba(134, 239, 172, 0.85);
+          background: rgba(240, 253, 244, 0.95);
+          border: 1px solid rgba(134, 239, 172, 0.9);
           color: #14532d;
-          font-family: Inter, sans-serif;
-          font-size: 9.5px;
-          font-weight: 800;
-          padding: 2.5px 6px;
-          border-radius: 6px;
-          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+          font-family: Inter, system-ui, sans-serif;
+          font-size: 12px;
+          font-weight: 700;
+          padding: 3px 8px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
           white-space: nowrap;
         }
         .aegis-breach-label {
-          background: rgba(254, 242, 242, 0.92);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid rgba(248, 113, 113, 0.85);
+          background: rgba(254, 242, 242, 0.95);
+          border: 1px solid rgba(248, 113, 113, 0.9);
           color: #991b1b;
-          font-family: Inter, sans-serif;
-          font-size: 9.5px;
-          font-weight: 900;
-          padding: 2.5px 6px;
-          border-radius: 6px;
-          box-shadow: 0 4px 12px rgba(153, 27, 27, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+          font-family: Inter, system-ui, sans-serif;
+          font-size: 12px;
+          font-weight: 800;
+          padding: 3px 8px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(153, 27, 27, 0.20);
         }
         .leaflet-popup-content-wrapper {
           border-radius: 12px;
-          background: rgba(255, 255, 255, 0.92);
-          backdrop-filter: blur(20px) saturate(150%);
-          -webkit-backdrop-filter: blur(20px) saturate(150%);
-          border: 1px solid rgba(255, 255, 255, 0.85);
+          background: rgba(255, 255, 255, 0.95);
+          border: 1px solid rgba(203, 213, 225, 0.9);
           box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16);
           padding: 2px;
         }
@@ -746,95 +738,95 @@ export default function GISMap({
       `}</style>
 
       {/* Unified GIS Layers & Operational Symbology Panel (Bottom-Left beneath State Overview Panel) */}
-      <div className="absolute bottom-3 left-3 z-[400] w-[340px] sm:w-[360px] max-w-[calc(100vw-24px)] glass-surface-light rounded-2xl p-3.5 shadow-xl text-xs hidden sm:block space-y-2.5">
+      <div className="absolute bottom-3 left-3 z-[400] w-[360px] sm:w-[380px] max-w-[calc(100vw-24px)] bg-white/95 border border-slate-300 rounded-2xl p-4 shadow-xl text-xs hidden sm:block space-y-3">
         {/* Section 1: Map Layers */}
         <div>
-          <div className="text-[9.5px] font-extrabold uppercase tracking-wider text-black mb-1.5 flex items-center justify-between border-b border-black/10 pb-1">
-            <span className="flex items-center gap-1.5 font-extrabold text-black">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2563A6]"></span>
-              Map Layers
+          <div className="text-xs font-bold text-slate-800 mb-2 flex items-center justify-between border-b border-slate-200 pb-1.5">
+            <span className="flex items-center gap-1.5 font-bold text-slate-900">
+              <span className="w-2 h-2 rounded-full bg-[#1E40AF]"></span>
+              Map layers
             </span>
-            <span className="text-[8.5px] bg-black/10 text-black px-1.5 py-0.2 rounded-full font-mono font-bold">GIS</span>
+            <span className="text-xs bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-mono font-bold">GIS</span>
           </div>
-          <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-black font-semibold">
-            <label className="flex items-center gap-1.5 cursor-pointer hover:text-[#2563A6] text-[10.5px]">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-slate-800 font-medium">
+            <label className="flex items-center gap-2 cursor-pointer hover:text-blue-700 text-xs">
               <input
                 type="checkbox"
                 checked={layers.hazardZones}
                 onChange={() => toggleLayer('hazardZones')}
-                className="accent-[#2563A6] cursor-pointer rounded"
+                className="accent-[#1E40AF] cursor-pointer rounded w-4 h-4"
               />
-              <span className="text-black">Hazard Zones</span>
+              <span className="text-slate-800 font-semibold">Hazard zones</span>
             </label>
-            <label className="flex items-center gap-1.5 cursor-pointer hover:text-[#2563A6] text-[10.5px]">
+            <label className="flex items-center gap-2 cursor-pointer hover:text-blue-700 text-xs">
               <input
                 type="checkbox"
                 checked={layers.habitations}
                 onChange={() => toggleLayer('habitations')}
-                className="accent-[#2563A6] cursor-pointer rounded"
+                className="accent-[#1E40AF] cursor-pointer rounded w-4 h-4"
               />
-              <span className="text-black">Habitations</span>
+              <span className="text-slate-800 font-semibold">Habitations</span>
             </label>
-            <label className="flex items-center gap-1.5 cursor-pointer hover:text-[#2563A6] text-[10.5px]">
+            <label className="flex items-center gap-2 cursor-pointer hover:text-blue-700 text-xs">
               <input
                 type="checkbox"
                 checked={layers.shelters}
                 onChange={() => toggleLayer('shelters')}
-                className="accent-[#2563A6] cursor-pointer rounded"
+                className="accent-[#1E40AF] cursor-pointer rounded w-4 h-4"
               />
-              <span className="text-black">Relief Shelters</span>
+              <span className="text-slate-800 font-semibold">Relief shelters</span>
             </label>
-            <label className="flex items-center gap-1.5 cursor-pointer hover:text-[#2563A6] text-[10.5px]">
+            <label className="flex items-center gap-2 cursor-pointer hover:text-blue-700 text-xs">
               <input
                 type="checkbox"
                 checked={layers.roads}
                 onChange={() => toggleLayer('roads')}
-                className="accent-[#2563A6] cursor-pointer rounded"
+                className="accent-[#1E40AF] cursor-pointer rounded w-4 h-4"
               />
-              <span className="text-black">Road Network</span>
+              <span className="text-slate-800 font-semibold">Road network</span>
             </label>
-            <label className="flex items-center gap-1.5 cursor-pointer hover:text-[#2563A6] text-[10.5px] col-span-2">
+            <label className="flex items-center gap-2 cursor-pointer hover:text-blue-700 text-xs col-span-2">
               <input
                 type="checkbox"
                 checked={layers.movementVectors}
                 onChange={() => toggleLayer('movementVectors')}
-                className="accent-[#2563A6] cursor-pointer rounded"
+                className="accent-[#1E40AF] cursor-pointer rounded w-4 h-4"
               />
-              <span className="text-black">Movement Vectors</span>
+              <span className="text-slate-800 font-semibold">Movement vectors</span>
             </label>
           </div>
         </div>
 
         {/* Section 2: Operational Symbology */}
-        <div className="pt-2 border-t border-black/10">
-          <div className="text-[9px] font-extrabold uppercase tracking-wider text-black mb-1.5 flex items-center justify-between">
-            <span className="font-extrabold text-black">Operational Symbology</span>
-            <span className="text-[8px] font-mono text-black uppercase bg-black/10 px-1.5 py-0.2 rounded font-bold">{basemapMode}</span>
+        <div className="pt-2 border-t border-slate-200">
+          <div className="text-xs font-bold text-slate-800 mb-2 flex items-center justify-between">
+            <span className="font-bold text-slate-900">Operational symbology</span>
+            <span className="text-xs font-mono text-slate-700 capitalize bg-slate-100 px-2 py-0.5 rounded font-bold">{basemapMode}</span>
           </div>
-          <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-[10px] text-black font-semibold">
-            <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-xs bg-red-700/40 border border-red-700 shrink-0"></span>
-              <span className="text-black">Critical Hazard</span>
+          <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-xs text-slate-800 font-medium">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-xs bg-red-700/40 border border-red-700 shrink-0"></span>
+              <span className="text-slate-800">Critical hazard</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-700 shrink-0 border border-white"></span>
-              <span className="text-black">Habitation</span>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-red-700 shrink-0 border border-white"></span>
+              <span className="text-slate-800">Habitation</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-xs bg-[#027A48] shrink-0 border border-white text-[7px] text-white flex items-center justify-center font-bold">⌂</span>
-              <span className="text-black">Relief Shelter</span>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-xs bg-[#027A48] shrink-0 border border-white text-[8px] text-white flex items-center justify-center font-bold">⌂</span>
+              <span className="text-slate-800">Relief shelter</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-0.5 bg-[#2563A6] shrink-0"></span>
-              <span className="text-black">Clear Road</span>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-1 bg-[#1E40AF] shrink-0"></span>
+              <span className="text-slate-800">Clear road</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-0.5 border-b border-dashed border-orange-600 shrink-0"></span>
-              <span className="text-black">At-Risk (R104)</span>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-1 border-b border-dashed border-orange-600 shrink-0"></span>
+              <span className="text-slate-800">At-risk (R104)</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-1 border-b-2 border-dashed border-[#B42318] shrink-0"></span>
-              <span className="text-black">Blocked (R104)</span>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-1.5 border-b-2 border-dashed border-[#B42318] shrink-0"></span>
+              <span className="text-slate-800">Blocked (R104)</span>
             </div>
           </div>
         </div>
@@ -842,47 +834,47 @@ export default function GISMap({
 
       {/* 3. Movement Vector Overlay Status Banner (Top Center, below toolbar) */}
       {activeVectorType !== 'none' && (
-        <div className="absolute top-14 left-1/2 -translate-x-1/2 glass-pill-light rounded-full px-4 py-1.5 shadow-md text-xs font-semibold z-[390] flex items-center gap-2 max-w-[90vw] truncate">
+        <div className="absolute top-14 left-1/2 -translate-x-1/2 bg-white/95 border border-slate-300 rounded-full px-5 py-2 shadow-md text-xs font-bold z-[390] flex items-center gap-2 max-w-[90vw] truncate text-slate-900">
           {activeVectorType === 'plan-v1-vectors' && (
-            <span className="text-[#027A48] flex items-center gap-1.5 truncate">
-              <span className="w-2 h-2 rounded-full bg-[#027A48] shrink-0"></span>
-              Plan V1 Active Transit Corridors (Meppadi, Kalpetta, Vythiri)
+            <span className="text-[#027A48] flex items-center gap-2 truncate">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#027A48] shrink-0"></span>
+              Plan V1 active transit corridors (Meppadi, Kalpetta, Vythiri)
             </span>
           )}
           {activeVectorType === 'plan-v1-invalidated-vector' && (
-            <span className="text-[#B42318] flex items-center gap-1.5 truncate">
-              <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse shrink-0"></span>
-              ⚠ Route R104 Transit Severed — 150 Evacuee Corridor Invalidated
+            <span className="text-[#B42318] flex items-center gap-2 truncate">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#DC2626] animate-pulse shrink-0"></span>
+              Route R104 transit severed — 150 evacuee corridor invalidated
             </span>
           )}
           {activeVectorType === 'plan-v2-vectors' && (
-            <span className="text-[#2563A6] flex items-center gap-1.5 truncate">
-              <span className="w-2 h-2 rounded-full bg-[#2563A6] shrink-0"></span>
-              Plan V2 Resilient Corridors Active (Kalpetta Arterial & Vythiri Bypass)
+            <span className="text-[#1E40AF] flex items-center gap-2 truncate">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#1E40AF] shrink-0"></span>
+              Plan V2 resilient corridors active (Kalpetta Arterial & Vythiri Bypass)
             </span>
           )}
         </div>
       )}
 
       {/* 4. Unified Bottom-Right Control Cluster (Zoom + Spatial Focus + Basemap Switcher) */}
-      <div className="absolute bottom-5 right-3 z-[400] flex flex-col items-end gap-1.5">
-        <div className="flex items-center gap-1.5">
+      <div className="absolute bottom-5 right-3 z-[400] flex flex-col items-end gap-2">
+        <div className="flex items-center gap-2">
           {/* Unified Map Zoom Controls */}
-          <div className="glass-pill-light rounded-xl shadow-md p-0.5 flex items-center">
+          <div className="bg-white/95 border border-slate-300 rounded-xl shadow-md p-0.5 flex items-center">
             <button
               type="button"
               onClick={() => mapInstanceRef.current?.zoomIn()}
-              className="w-6 h-6 flex items-center justify-center font-bold text-slate-700 hover:bg-slate-100/60 active:bg-slate-200/60 rounded-lg transition cursor-pointer text-xs"
+              className="w-8 h-8 flex items-center justify-center font-bold text-slate-800 hover:bg-slate-100 active:bg-slate-200 rounded-lg transition cursor-pointer text-sm"
               title="Zoom in map"
               aria-label="Zoom in"
             >
               +
             </button>
-            <div className="w-px h-3.5 bg-slate-300/60" />
+            <div className="w-px h-4 bg-slate-300" />
             <button
               type="button"
               onClick={() => mapInstanceRef.current?.zoomOut()}
-              className="w-6 h-6 flex items-center justify-center font-bold text-slate-700 hover:bg-slate-100/60 active:bg-slate-200/60 rounded-lg transition cursor-pointer text-xs"
+              className="w-8 h-8 flex items-center justify-center font-bold text-slate-800 hover:bg-slate-100 active:bg-slate-200 rounded-lg transition cursor-pointer text-sm"
               title="Zoom out map"
               aria-label="Zoom out"
             >
@@ -891,19 +883,19 @@ export default function GISMap({
           </div>
 
           {/* Spatial Focus & Reset Action Card */}
-          <div className="glass-surface-light rounded-xl px-3 py-1.5 shadow-md text-right flex items-center gap-2">
+          <div className="bg-white/95 border border-slate-300 rounded-xl px-3.5 py-2 shadow-md text-right flex items-center gap-2.5">
             <button
               type="button"
               onClick={handleResetFocus}
-              className="px-2 py-1 text-[10px] font-bold bg-white/80 border border-slate-200/70 rounded-lg text-[#172033] hover:bg-white active:bg-slate-100 flex items-center gap-1 cursor-pointer shadow-2xs transition whitespace-nowrap"
+              className="px-3 py-1.5 text-xs font-bold bg-white border border-slate-300 rounded-lg text-slate-900 hover:bg-slate-50 active:bg-slate-100 flex items-center gap-1.5 cursor-pointer shadow-xs transition whitespace-nowrap min-h-[32px]"
               title="Reset map view to Wayanad focus area"
             >
               <span>⌖</span> Focus
             </button>
-            <div className="border-l border-slate-200/70 pl-2 text-right">
-              <div className="text-[9px] font-extrabold text-black uppercase tracking-wider">Spatial Focus</div>
-              <div className="text-[11px] font-extrabold text-black leading-tight whitespace-nowrap">{spatialFocus.title}</div>
-              <div className="text-[9.5px] text-black font-semibold font-mono flex items-center justify-end gap-1 mt-0.5 whitespace-nowrap">
+            <div className="border-l border-slate-200 pl-2.5 text-right">
+              <div className="text-xs font-bold text-slate-600">Spatial focus</div>
+              <div className="text-sm font-bold text-slate-900 leading-tight whitespace-nowrap">{spatialFocus.title}</div>
+              <div className="text-xs text-slate-700 font-semibold font-mono tabular-nums flex items-center justify-end gap-1 mt-0.5 whitespace-nowrap">
                 <span>{spatialFocus.subtitle}:</span>
                 <strong style={{ color: spatialFocus.statusColor }}>{spatialFocus.status}</strong>
               </div>
@@ -912,14 +904,14 @@ export default function GISMap({
         </div>
 
         {/* Basemap Mode Switcher */}
-        <div className="glass-pill-light rounded-xl shadow-md p-0.5 flex items-center gap-0.5 text-xs">
+        <div className="bg-white/95 border border-slate-300 rounded-xl shadow-md p-1 flex items-center gap-1 text-xs">
           <button
             type="button"
             onClick={() => setBasemapMode('operational')}
-            className={`px-2 py-0.5 rounded-lg text-[10.5px] font-semibold cursor-pointer transition-colors ${
+            className={`px-3 py-1 rounded-lg text-xs font-semibold cursor-pointer transition min-h-[32px] ${
               basemapMode === 'operational'
                 ? 'bg-[#1D4ED8] text-white shadow-xs'
-                : 'text-[#526174] hover:bg-slate-100/60'
+                : 'text-slate-700 hover:bg-slate-100'
             }`}
             title="OpenStreetMap Standard (Roads, Settlements & Corridor Focus)"
           >
@@ -928,10 +920,10 @@ export default function GISMap({
           <button
             type="button"
             onClick={() => setBasemapMode('satellite')}
-            className={`px-2 py-0.5 rounded-lg text-[10.5px] font-semibold cursor-pointer transition-colors ${
+            className={`px-3 py-1 rounded-lg text-xs font-semibold cursor-pointer transition min-h-[32px] ${
               basemapMode === 'satellite'
                 ? 'bg-[#1D4ED8] text-white shadow-xs'
-                : 'text-[#526174] hover:bg-slate-100/60'
+                : 'text-slate-700 hover:bg-slate-100'
             }`}
             title="ESRI World Imagery (High-Resolution Physical Satellite)"
           >
@@ -940,10 +932,10 @@ export default function GISMap({
           <button
             type="button"
             onClick={() => setBasemapMode('terrain')}
-            className={`px-2 py-0.5 rounded-lg text-[10.5px] font-semibold cursor-pointer transition-colors ${
+            className={`px-3 py-1 rounded-lg text-xs font-semibold cursor-pointer transition min-h-[32px] ${
               basemapMode === 'terrain'
                 ? 'bg-[#1D4ED8] text-white shadow-xs'
-                : 'text-[#526174] hover:bg-slate-100/60'
+                : 'text-slate-700 hover:bg-slate-100'
             }`}
             title="OpenTopoMap (Topographic Shaded Contours & Elevation Relief)"
           >

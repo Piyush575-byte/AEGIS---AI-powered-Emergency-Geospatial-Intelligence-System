@@ -1,0 +1,674 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-gov-blue: #1d70b8;
+  --color-gov-darkblue: #003078;
+}
+
+/* ============================================================
+   AEGIS Fatigue-Conscious Government Operational Design System
+   Primary Reference: GOV.UK Design System
+   Secondary Reference: US Web Design System (USWDS)
+   ============================================================ */
+
+:root {
+  /* Application Surface & Base - Soft blue-slate & neutral hierarchy */
+  --bg-app: #F5F7FA;
+  --bg-surface: #FFFFFF;
+  --bg-surface-secondary: #F8FAFC;
+  --bg-surface-tertiary: #EEF3F8;
+  
+  /* Primary Restrained Government Blue */
+  --gov-blue: #2563A6;
+  --gov-blue-hover: #1D4F80;
+  --gov-blue-dark: #174A7C;
+  --gov-blue-soft: #E8F1FA;
+  --gov-blue-light: #EFF6FF;
+
+  /* Typography Colors - Black & High-Readability (No Grey Text) */
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --text-muted: #000000;
+  --text-inverse: #FFFFFF;
+
+  /* Borders & Dividers - Subtle Hairline */
+  --border-strong: #CBD5E1;
+  --border-default: #D9E1EA;
+  --border-subtle: #E2E8F0;
+
+  /* Semantic Operational Tokens (Muted, Restrained) */
+  --status-critical-bg: #FEF2F2;
+  --status-critical-border: #FECACA;
+  --status-critical-text: #B42318;
+  --status-critical-solid: #DC2626;
+
+  --status-warning-bg: #FFFAEB;
+  --status-warning-border: #FEDF89;
+  --status-warning-text: #B54708;
+  --status-warning-solid: #F59E0B;
+
+  --status-safe-bg: #ECFDF3;
+  --status-safe-border: #ABEFC6;
+  --status-safe-text: #027A48;
+  --status-safe-solid: #059669;
+
+  --status-info-bg: #EFF6FF;
+  --status-info-border: #B2DDFF;
+  --status-info-text: #175CD3;
+  --status-info-solid: #2563A6;
+
+  /* Typography Families */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ============================================================
+   Base Setup - Readable & Accessible
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 15px; /* Minimum legible base text */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessible, Calm Focus Rings */
+:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* ============================================================
+   Shell Layout Primitives - Map-First & Calm
+   ============================================================ */
+
+.aegis-shell {
+  display: grid;
+  grid-template-rows: 48px 1fr;
+  grid-template-columns: 185px 1fr;
+  height: 100vh;
+  width: 100vw;
+  background: var(--bg-app);
+}
+
+.aegis-header {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  background: rgba(14, 16, 22, 0.88);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  z-index: 50;
+  user-select: none;
+}
+
+.aegis-sidebar-container {
+  background: rgba(14, 16, 22, 0.88);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    4px 0 30px rgba(0, 0, 0, 0.35),
+    inset -1px 0 0 rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+.aegis-sidebar {
+  grid-column: 1;
+  grid-row: 2;
+  background: rgba(14, 16, 22, 0.88);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    4px 0 30px rgba(0, 0, 0, 0.35),
+    inset -1px 0 0 rgba(255, 255, 255, 0.08);
+  overflow-y: auto;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 40;
+  color: #FFFFFF;
+}
+
+.aegis-main {
+  grid-column: 2;
+  grid-row: 2;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--bg-app);
+  position: relative;
+  height: 100%;
+}
+
+/* Map-first full layout */
+.aegis-map-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* ============================================================
+   Apple-Inspired Liquid Glass Design System
+   ============================================================ */
+
+/* Light Liquid Glass Material Surface (Reusable on any container/popover/legend) */
+.glass-surface-light {
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  box-shadow:
+    0 16px 40px -6px rgba(15, 23, 42, 0.14),
+    0 4px 12px rgba(15, 23, 42, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  color: #172033;
+}
+
+/* Light Liquid Glass Floating Card Layout */
+.aegis-floating-card,
+.aegis-floating-drawer {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 18px;
+  box-shadow:
+    0 16px 40px -6px rgba(15, 23, 42, 0.14),
+    0 4px 12px rgba(15, 23, 42, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  overflow: hidden;
+  color: #000000;
+  transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s ease;
+  animation: aegis-card-enter 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Floating Glass Pill (Toolbar, Segments, Actions) */
+.glass-pill-light {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  box-shadow:
+    0 8px 24px -2px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Dark Pill Control */
+.glass-pill-dark {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+/* Sub-card inside glass panels (Nested Frosted Material) */
+.glass-card-subtle {
+  background: rgba(248, 250, 252, 0.68);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.90);
+}
+
+/* Apple Primary Action Glass Pill */
+.glass-btn-primary {
+  background: linear-gradient(180deg, #2563EB 0%, #1D4ED8 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 4px 14px rgba(29, 78, 216, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-btn-primary:hover {
+  background: linear-gradient(180deg, #3B82F6 0%, #2563EB 100%);
+  box-shadow:
+    0 6px 18px rgba(29, 78, 216, 0.40),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* Accessibility: Reduced Transparency & Motion */
+@media (prefers-reduced-transparency: reduce) {
+  .aegis-header {
+    background: #0F172A;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .aegis-sidebar {
+    background: #0F172A;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .glass-surface-light,
+  .aegis-floating-card,
+  .aegis-floating-drawer,
+  .glass-pill-light {
+    background: #FFFFFF;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .glass-card-subtle {
+    background: #F8FAFC;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.aegis-floating-card > div:last-child {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+}
+
+@keyframes aegis-card-enter {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+@media (max-width: 768px) {
+  .aegis-floating-card,
+  .aegis-floating-drawer {
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+    left: 12px;
+    right: 12px;
+    top: 12px;
+    max-height: 52vh;
+  }
+}
+
+/* ============================================================
+   Typography Hierarchy - Legible & Direct
+   ============================================================ */
+
+.font-mono-code {
+  font-family: var(--font-mono);
+}
+
+.text-title-xl {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.text-title-lg {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.text-title-md {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.text-body-regular {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.text-body-muted {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* ============================================================
+   Buttons - Generous Touch Targets & Clear Actions
+   ============================================================ */
+
+.aegis-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  border: 1px solid transparent;
+  text-decoration: none;
+  line-height: 1.25;
+}
+
+.aegis-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.aegis-btn-primary {
+  background: var(--gov-blue);
+  color: #ffffff;
+  border-color: #1a568c;
+}
+.aegis-btn-primary:hover:not(:disabled) {
+  background: var(--gov-blue-hover);
+}
+
+.aegis-btn-success {
+  background: #15803d;
+  color: #ffffff;
+  border-color: #166534;
+}
+.aegis-btn-success:hover:not(:disabled) {
+  background: #166534;
+}
+
+.aegis-btn-danger {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #b91c1c;
+}
+.aegis-btn-danger:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+.aegis-btn-secondary {
+  background: #1e293b;
+  color: #f1f5f9;
+  border-color: #334155;
+}
+.aegis-btn-secondary:hover:not(:disabled) {
+  background: #334155;
+  color: #ffffff;
+}
+
+.aegis-btn-sm {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.aegis-btn-full {
+  width: 100%;
+}
+
+/* ============================================================
+   Badges
+   ============================================================ */
+
+.aegis-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* Risk Semantic Badges */
+.aegis-badge-critical {
+  background: var(--risk-critical-bg);
+  color: var(--risk-critical-text);
+  border: 1px solid var(--risk-critical-border);
+}
+
+.aegis-badge-high {
+  background: var(--risk-high-bg);
+  color: var(--risk-high-text);
+  border: 1px solid var(--risk-high-border);
+}
+
+.aegis-badge-warning {
+  background: var(--risk-warning-bg);
+  color: var(--risk-warning-text);
+  border: 1px solid var(--risk-warning-border);
+}
+
+.aegis-badge-safe {
+  background: var(--risk-safe-bg);
+  color: var(--risk-safe-text);
+  border: 1px solid var(--risk-safe-border);
+}
+
+.aegis-badge-info {
+  background: var(--risk-info-bg);
+  color: var(--risk-info-text);
+  border: 1px solid var(--risk-info-border);
+}
+
+/* Data Semantics Badges */
+.aegis-badge-source {
+  background: var(--badge-source-bg);
+  color: var(--badge-source-text);
+  border: 1px solid var(--badge-source-border);
+}
+
+.aegis-badge-derived {
+  background: var(--badge-derived-bg);
+  color: var(--badge-derived-text);
+  border: 1px solid var(--badge-derived-border);
+}
+
+.aegis-badge-aegis {
+  background: var(--badge-aegis-bg);
+  color: var(--badge-aegis-text);
+  border: 1px solid var(--badge-aegis-border);
+}
+
+.aegis-badge-demo {
+  background: var(--badge-demo-bg);
+  color: var(--badge-demo-text);
+  border: 1px solid var(--badge-demo-border);
+}
+
+/* Authority Badges */
+.authority-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.authority-badge-state {
+  background: #312e81;
+  color: #e0e7ff;
+  border: 1px solid #4338ca;
+}
+
+.authority-badge-district {
+  background: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #334155;
+}
+
+.authority-badge-taluk {
+  background: #14532d;
+  color: #dcfce7;
+  border: 1px solid #166534;
+}
+
+.authority-badge-field {
+  background: #78350f;
+  color: #fef3c7;
+  border: 1px solid #92400e;
+}
+
+.authority-badge-advisory {
+  background: #1e3a8a;
+  color: #dbeafe;
+  border: 1px solid #2563eb;
+}
+
+/* ============================================================
+   Cards & Panels
+   ============================================================ */
+
+.aegis-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.aegis-card-header {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fafbfc;
+}
+
+.aegis-card-body {
+  padding: 14px;
+}
+
+.aegis-card-footer {
+  padding: 10px 14px;
+  border-top: 1px solid var(--border-subtle);
+  background: #fafbfc;
+}
+
+/* Human Approval Banner */
+.human-approval-banner {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-left: 4px solid #d97706;
+  border-radius: 4px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.human-approval-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.human-approval-subtitle {
+  font-size: 11.5px;
+  color: #78350f;
+}
+
+/* Status Indicator Dot */
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.status-dot-green {
+  background: #16a34a;
+}
+
+.status-dot-amber {
+  background: #d97706;
+}
+
+.status-dot-red {
+  background: #dc2626;
+}
+
+.status-dot-blue {
+  background: #2563eb;
+}
+
+/* ============================================================
+   Fade-in utility
+   ============================================================ */
+@keyframes aegis-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: aegis-fade-in 0.2s ease both;
+}
+
+/* ============================================================
+   Pulse (critical incident indicator)
+   ============================================================ */
+@keyframes aegis-ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+.animate-ping {
+  animation: aegis-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}

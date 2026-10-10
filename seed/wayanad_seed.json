@@ -1,0 +1,761 @@
+{
+  "scenario": "Wayanad Emergency Relocation Scenario",
+  "district": "Wayanad, Kerala",
+  "habitations": [
+    {
+      "id": "11111111-1111-1111-1111-111111111101",
+      "code": "HAB-CHOORALMALA",
+      "name": "Chooralmala",
+      "population": 120,
+      "households": 35,
+      "risk_level": "critical",
+      "latitude": 11.5398,
+      "longitude": 76.1752,
+      "metadata": {
+        "taluk": "Vythiri",
+        "panchayath": "Meppadi",
+        "ward": "Ward 10",
+        "slope_saturation_pct": 94.2
+      }
+    },
+    {
+      "id": "11111111-1111-1111-1111-111111111102",
+      "code": "HAB-MUNDAKKAI",
+      "name": "Mundakkai",
+      "population": 85,
+      "households": 22,
+      "risk_level": "critical",
+      "latitude": 11.5465,
+      "longitude": 76.1810,
+      "metadata": {
+        "taluk": "Vythiri",
+        "panchayath": "Meppadi",
+        "ward": "Ward 12",
+        "slope_saturation_pct": 96.1
+      }
+    },
+    {
+      "id": "11111111-1111-1111-1111-111111111103",
+      "code": "HAB-VELLARMALA",
+      "name": "Vellarmala North Settlement",
+      "population": 64,
+      "households": 18,
+      "risk_level": "high",
+      "latitude": 11.5501,
+      "longitude": 76.1620,
+      "metadata": {
+        "taluk": "Vythiri",
+        "panchayath": "Meppadi",
+        "ward": "Ward 7",
+        "slope_saturation_pct": 88.4
+      }
+    }
+  ],
+  "shelters": [
+    {
+      "id": "22222222-2222-2222-2222-222222222201",
+      "code": "SH-ALPHA",
+      "name": "Meppadi Community Hall (Shelter Alpha)",
+      "total_capacity": 300,
+      "occupied_capacity": 50,
+      "medical_support": true,
+      "status": "active",
+      "latitude": 11.5535,
+      "longitude": 76.1305,
+      "metadata": {
+        "contact": "Executive Officer, Meppadi Grama Panchayath",
+        "water_source": "KWA Municipal Tanker Supply",
+        "generator_backup": true
+      }
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222202",
+      "code": "SH-BETA",
+      "name": "Vellarmala Lower Primary School (Shelter Beta)",
+      "total_capacity": 80,
+      "occupied_capacity": 20,
+      "medical_support": false,
+      "status": "active",
+      "latitude": 11.5450,
+      "longitude": 76.1550,
+      "metadata": {
+        "note": "Small rural school - insufficient remaining capacity for 120 people"
+      }
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222203",
+      "code": "SH-DELTA",
+      "name": "Attamala Community Centre (Shelter Delta)",
+      "total_capacity": 250,
+      "occupied_capacity": 30,
+      "medical_support": false,
+      "status": "degraded_access",
+      "latitude": 11.5280,
+      "longitude": 76.1400,
+      "metadata": {
+        "note": "Adequate capacity, but access corridor R3 severely degraded by slope slip"
+      }
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222204",
+      "code": "SH-GAMMA",
+      "name": "Vythiri Government Higher Secondary School (Shelter Gamma)",
+      "total_capacity": 400,
+      "occupied_capacity": 75,
+      "medical_support": true,
+      "status": "active",
+      "latitude": 11.5510,
+      "longitude": 76.0420,
+      "metadata": {
+        "note": "High-capacity facility with medical station, safe access via bypass R4"
+      }
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222205",
+      "code": "SH-EPSILON",
+      "name": "Kalpetta Town Hall (Shelter Epsilon)",
+      "total_capacity": 500,
+      "occupied_capacity": 120,
+      "medical_support": true,
+      "status": "active",
+      "latitude": 11.6079,
+      "longitude": 76.0831,
+      "metadata": {
+        "contact": "Kalpetta Municipality Office",
+        "water_source": "KSEB-backed municipal supply",
+        "generator_backup": true
+      }
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222206",
+      "code": "SH-ZETA",
+      "name": "Mananthavady Model Residential School (Shelter Zeta)",
+      "total_capacity": 350,
+      "occupied_capacity": 45,
+      "medical_support": true,
+      "status": "active",
+      "latitude": 11.8008,
+      "longitude": 76.0041,
+      "metadata": {
+        "contact": "Principal, MRS Mananthavady",
+        "water_source": "KWA piped supply",
+        "generator_backup": true
+      }
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222207",
+      "code": "SH-ETA",
+      "name": "Sulthan Bathery GHSS Auditorium (Shelter Eta)",
+      "total_capacity": 280,
+      "occupied_capacity": 60,
+      "medical_support": false,
+      "status": "active",
+      "latitude": 11.6532,
+      "longitude": 76.2643,
+      "metadata": {
+        "contact": "Headmaster, GHSS Sulthan Bathery",
+        "generator_backup": false
+      }
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222208",
+      "code": "SH-THETA",
+      "name": "Padinjarathara Panchayath Community Hall (Shelter Theta)",
+      "total_capacity": 180,
+      "occupied_capacity": 15,
+      "medical_support": false,
+      "status": "active",
+      "latitude": 11.5938,
+      "longitude": 76.2012,
+      "metadata": {
+        "note": "Remote location — vehicle access only via SH-54 link"
+      }
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222209",
+      "code": "SH-IOTA",
+      "name": "Pozhuthana College Multipurpose Hall (Shelter Iota)",
+      "total_capacity": 320,
+      "occupied_capacity": 90,
+      "medical_support": true,
+      "status": "active",
+      "latitude": 11.5812,
+      "longitude": 76.1155,
+      "metadata": {
+        "contact": "College Principal, Pozhuthana",
+        "generator_backup": true
+      }
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222210",
+      "code": "SH-KAPPA",
+      "name": "Thavinhal Grama Panchayath Hall (Shelter Kappa)",
+      "total_capacity": 150,
+      "occupied_capacity": 10,
+      "medical_support": false,
+      "status": "active",
+      "latitude": 11.5220,
+      "longitude": 76.0950,
+      "metadata": {
+        "note": "Small rural panchayath hall, accessible via R6 forest link"
+      }
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222211",
+      "code": "SH-LAMBDA",
+      "name": "Vythiri Resort Convention Centre (Emergency Shelter Lambda)",
+      "total_capacity": 600,
+      "occupied_capacity": 200,
+      "medical_support": true,
+      "status": "full",
+      "latitude": 11.5601,
+      "longitude": 76.0310,
+      "metadata": {
+        "note": "Full — no further intake. Medical team stationed."
+      }
+    },
+    {
+      "id": "22222222-2222-2222-2222-222222222212",
+      "code": "SH-MU",
+      "name": "Ambalavayal Heritage Cultural Centre (Shelter Mu)",
+      "total_capacity": 220,
+      "occupied_capacity": 55,
+      "medical_support": false,
+      "status": "active",
+      "latitude": 11.7302,
+      "longitude": 76.1540,
+      "metadata": {
+        "note": "Northern Wayanad — suitable for Mananthavady-area overflow"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "id": "33333333-3333-3333-3333-333333333301",
+      "code": "R1",
+      "name": "Chooralmala-Meppadi Main Arterial (Bridge Sector KM 4.2)",
+      "status": "clear",
+      "distance_km": 6.8,
+      "capacity_pax_hour": 500,
+      "coordinates": [
+        [76.1752, 11.5398],
+        [76.1620, 11.5430],
+        [76.1480, 11.5490],
+        [76.1305, 11.5535]
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333302",
+      "code": "R2",
+      "name": "Chooralmala-Vellarmala Link Road",
+      "status": "clear",
+      "distance_km": 3.2,
+      "capacity_pax_hour": 150,
+      "coordinates": [
+        [76.1752, 11.5398],
+        [76.1660, 11.5420],
+        [76.1550, 11.5450]
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333303",
+      "code": "R3",
+      "name": "Attamala Forest Access Track",
+      "status": "degraded",
+      "distance_km": 7.5,
+      "capacity_pax_hour": 80,
+      "coordinates": [
+        [76.1752, 11.5398],
+        [76.1600, 11.5310],
+        [76.1400, 11.5280]
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333304",
+      "code": "R4",
+      "name": "Chooralmala-Vythiri Resilient Bypass Corridor",
+      "status": "clear",
+      "distance_km": 16.4,
+      "capacity_pax_hour": 800,
+      "coordinates": [
+        [76.1752, 11.5398],
+        [76.1610, 11.5520],
+        [76.1250, 11.5600],
+        [76.0800, 11.5550],
+        [76.0420, 11.5510]
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333305",
+      "code": "R5",
+      "name": "Meppadi-Kalpetta NH-766 Northbound Corridor",
+      "status": "clear",
+      "distance_km": 14.2,
+      "capacity_pax_hour": 1200,
+      "coordinates": [
+        [76.1305, 11.5535],
+        [76.1200, 11.5680],
+        [76.1050, 11.5820],
+        [76.0831, 11.6079]
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333306",
+      "code": "R6",
+      "name": "Vythiri-Thavinhal Forest Corridor Link",
+      "status": "clear",
+      "distance_km": 8.9,
+      "capacity_pax_hour": 300,
+      "coordinates": [
+        [76.0420, 11.5510],
+        [76.0600, 11.5350],
+        [76.0780, 11.5200],
+        [76.0950, 11.5220]
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333307",
+      "code": "R7",
+      "name": "Kalpetta-Mananthavady SH-54 Arterial",
+      "status": "clear",
+      "distance_km": 22.1,
+      "capacity_pax_hour": 1000,
+      "coordinates": [
+        [76.0831, 11.6079],
+        [76.0620, 11.6480],
+        [76.0350, 11.7100],
+        [76.0041, 11.8008]
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333308",
+      "code": "R8",
+      "name": "Padinjarathara-Kalpetta Ghat Road",
+      "status": "degraded",
+      "distance_km": 11.8,
+      "capacity_pax_hour": 200,
+      "coordinates": [
+        [76.2012, 11.5938],
+        [76.1750, 11.5980],
+        [76.1500, 11.6020],
+        [76.0831, 11.6079]
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333309",
+      "code": "R9",
+      "name": "Sulthan Bathery-Ambalavayal National Highway Link",
+      "status": "clear",
+      "distance_km": 9.4,
+      "capacity_pax_hour": 800,
+      "coordinates": [
+        [76.2643, 11.6532],
+        [76.2200, 11.6780],
+        [76.1900, 11.7000],
+        [76.1540, 11.7302]
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333310",
+      "code": "R10",
+      "name": "Mundakkai-Chooralmala Emergency Access Link",
+      "status": "blocked",
+      "distance_km": 2.1,
+      "capacity_pax_hour": 100,
+      "coordinates": [
+        [76.1810, 11.5465],
+        [76.1780, 11.5430],
+        [76.1752, 11.5398]
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333311",
+      "code": "R11",
+      "name": "Pozhuthana-Meppadi Cross-Range Road",
+      "status": "clear",
+      "distance_km": 6.3,
+      "capacity_pax_hour": 400,
+      "coordinates": [
+        [76.1155, 11.5812],
+        [76.1220, 11.5680],
+        [76.1305, 11.5535]
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333312",
+      "code": "R12",
+      "name": "Vellarmala-Attamala High Ridge Track",
+      "status": "degraded",
+      "distance_km": 5.7,
+      "capacity_pax_hour": 100,
+      "coordinates": [
+        [76.1550, 11.5450],
+        [76.1480, 11.5380],
+        [76.1400, 11.5280]
+      ]
+    }
+  ],
+  "hazard_zones": [
+    {
+      "id": "44444444-4444-4444-4444-444444444401",
+      "code": "HZ-CHOORALMALA-SLOPE",
+      "name": "Chooralmala Western Ridge Landslide Susceptibility Zone",
+      "hazard_type": "landslide",
+      "severity": "critical",
+      "rainfall_24h_mm": 204.0,
+      "slope_saturation_pct": 94.2,
+      "polygon": [
+        [76.1680, 11.5350],
+        [76.1820, 11.5350],
+        [76.1850, 11.5450],
+        [76.1700, 11.5460],
+        [76.1680, 11.5350]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444402",
+      "code": "HZ-MUNDAKKAI-DEBRIS",
+      "name": "Mundakkai Debris Flow Corridor",
+      "hazard_type": "debris_flow",
+      "severity": "critical",
+      "rainfall_24h_mm": 218.5,
+      "slope_saturation_pct": 97.1,
+      "polygon": [
+        [76.1760, 11.5440],
+        [76.1870, 11.5440],
+        [76.1900, 11.5510],
+        [76.1780, 11.5520],
+        [76.1760, 11.5440]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444403",
+      "code": "HZ-VELLARMALA-FLOOD",
+      "name": "Vellarmala River Inundation Belt",
+      "hazard_type": "flash_flood",
+      "severity": "high",
+      "rainfall_24h_mm": 178.2,
+      "slope_saturation_pct": 86.5,
+      "polygon": [
+        [76.1480, 11.5410],
+        [76.1620, 11.5410],
+        [76.1640, 11.5490],
+        [76.1490, 11.5495],
+        [76.1480, 11.5410]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444404",
+      "code": "HZ-R1-BRIDGE-SECTOR",
+      "name": "R1 Bridge KM 4.2 Structural Vulnerability Zone",
+      "hazard_type": "bridge_failure",
+      "severity": "critical",
+      "rainfall_24h_mm": 204.0,
+      "slope_saturation_pct": 91.8,
+      "polygon": [
+        [76.1500, 11.5470],
+        [76.1560, 11.5470],
+        [76.1565, 11.5510],
+        [76.1505, 11.5510],
+        [76.1500, 11.5470]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444405",
+      "code": "HZ-ATTAMALA-SLOPE",
+      "name": "Attamala Ghat Cutting Slope Failure Belt",
+      "hazard_type": "landslide",
+      "severity": "high",
+      "rainfall_24h_mm": 162.0,
+      "slope_saturation_pct": 83.2,
+      "polygon": [
+        [76.1340, 11.5240],
+        [76.1460, 11.5240],
+        [76.1470, 11.5320],
+        [76.1350, 11.5325],
+        [76.1340, 11.5240]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444406",
+      "code": "HZ-POZHUTHANA-WATERLOG",
+      "name": "Pozhuthana Valley Waterlogging Zone",
+      "hazard_type": "waterlogging",
+      "severity": "warning",
+      "rainfall_24h_mm": 145.0,
+      "slope_saturation_pct": 72.4,
+      "polygon": [
+        [76.1080, 11.5780],
+        [76.1230, 11.5780],
+        [76.1250, 11.5850],
+        [76.1090, 11.5855],
+        [76.1080, 11.5780]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444407",
+      "code": "HZ-KALPETTA-URBAN-FLOOD",
+      "name": "Kalpetta Urban Storm Water Overflow Zone",
+      "hazard_type": "flash_flood",
+      "severity": "warning",
+      "rainfall_24h_mm": 138.5,
+      "slope_saturation_pct": 68.0,
+      "polygon": [
+        [76.0760, 11.5990],
+        [76.0900, 11.5990],
+        [76.0920, 11.6160],
+        [76.0770, 11.6165],
+        [76.0760, 11.5990]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444408",
+      "code": "HZ-R8-GHAT-SLIP",
+      "name": "Padinjarathara Ghat Road Slope Slip Sector",
+      "hazard_type": "landslide",
+      "severity": "high",
+      "rainfall_24h_mm": 192.0,
+      "slope_saturation_pct": 88.9,
+      "polygon": [
+        [76.1680, 11.5900],
+        [76.1820, 11.5900],
+        [76.1840, 11.5980],
+        [76.1695, 11.5985],
+        [76.1680, 11.5900]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444409",
+      "code": "HZ-SULTHAN-BATHERY-RIVER",
+      "name": "Sulthan Bathery Kabani River Flood Susceptibility",
+      "hazard_type": "flash_flood",
+      "severity": "high",
+      "rainfall_24h_mm": 175.0,
+      "slope_saturation_pct": 80.5,
+      "polygon": [
+        [76.2500, 11.6440],
+        [76.2750, 11.6440],
+        [76.2780, 11.6630],
+        [76.2510, 11.6635],
+        [76.2500, 11.6440]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444410",
+      "code": "HZ-MANANTHAVADY-LOWLAND",
+      "name": "Mananthavady Lowland Inundation Risk Zone",
+      "hazard_type": "flash_flood",
+      "severity": "warning",
+      "rainfall_24h_mm": 151.0,
+      "slope_saturation_pct": 74.3,
+      "polygon": [
+        [75.9900, 11.7940],
+        [76.0180, 11.7940],
+        [76.0210, 11.8090],
+        [75.9920, 11.8095],
+        [75.9900, 11.7940]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444411",
+      "code": "HZ-VYTHIRI-NORTH-SLOPE",
+      "name": "Vythiri North Hill Slope Instability Zone",
+      "hazard_type": "landslide",
+      "severity": "high",
+      "rainfall_24h_mm": 183.0,
+      "slope_saturation_pct": 85.6,
+      "polygon": [
+        [76.0320, 11.5560],
+        [76.0520, 11.5560],
+        [76.0540, 11.5650],
+        [76.0330, 11.5655],
+        [76.0320, 11.5560]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444412",
+      "code": "HZ-THAVINHAL-RIDGE",
+      "name": "Thavinhal High-Ridge Saturated Soil Zone",
+      "hazard_type": "landslide",
+      "severity": "warning",
+      "rainfall_24h_mm": 142.5,
+      "slope_saturation_pct": 78.2,
+      "polygon": [
+        [76.0870, 11.5160],
+        [76.1030, 11.5160],
+        [76.1050, 11.5280],
+        [76.0880, 11.5285],
+        [76.0870, 11.5160]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444413",
+      "code": "HZ-AMBALAVAYAL-BANK",
+      "name": "Ambalavayal Riverbank Erosion Zone",
+      "hazard_type": "erosion",
+      "severity": "warning",
+      "rainfall_24h_mm": 135.0,
+      "slope_saturation_pct": 69.8,
+      "polygon": [
+        [76.1440, 11.7210],
+        [76.1640, 11.7210],
+        [76.1660, 11.7400],
+        [76.1450, 11.7405],
+        [76.1440, 11.7210]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444414",
+      "code": "HZ-R10-MUNDAKKAI-BLOCK",
+      "name": "Mundakkai-Chooralmala Route Blockage Debris Field",
+      "hazard_type": "debris_flow",
+      "severity": "critical",
+      "rainfall_24h_mm": 218.5,
+      "slope_saturation_pct": 96.8,
+      "polygon": [
+        [76.1770, 11.5400],
+        [76.1820, 11.5400],
+        [76.1825, 11.5455],
+        [76.1772, 11.5458],
+        [76.1770, 11.5400]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444415",
+      "code": "HZ-KALPETTA-SOUTH-BANK",
+      "name": "Kalpetta South Kabani Tributary Overflow",
+      "hazard_type": "flash_flood",
+      "severity": "high",
+      "rainfall_24h_mm": 161.0,
+      "slope_saturation_pct": 80.0,
+      "polygon": [
+        [76.0750, 11.5850],
+        [76.0950, 11.5850],
+        [76.0970, 11.5970],
+        [76.0760, 11.5975],
+        [76.0750, 11.5850]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444416",
+      "code": "HZ-R3-FOREST-SLIP",
+      "name": "Attamala Forest Track R3 Slope Failure Sector",
+      "hazard_type": "landslide",
+      "severity": "high",
+      "rainfall_24h_mm": 174.0,
+      "slope_saturation_pct": 87.1,
+      "polygon": [
+        [76.1540, 11.5280],
+        [76.1660, 11.5280],
+        [76.1675, 11.5360],
+        [76.1548, 11.5365],
+        [76.1540, 11.5280]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444417",
+      "code": "HZ-R5-CULVERT",
+      "name": "Meppadi-Kalpetta NH766 Culvert Overflow Zone",
+      "hazard_type": "flash_flood",
+      "severity": "warning",
+      "rainfall_24h_mm": 145.5,
+      "slope_saturation_pct": 73.5,
+      "polygon": [
+        [76.1140, 11.5700],
+        [76.1260, 11.5700],
+        [76.1275, 11.5790],
+        [76.1148, 11.5793],
+        [76.1140, 11.5700]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444418",
+      "code": "HZ-VELLARMALA-SOUTH-SLOPE",
+      "name": "Vellarmala South Escarpment Landslide Sector",
+      "hazard_type": "landslide",
+      "severity": "high",
+      "rainfall_24h_mm": 189.0,
+      "slope_saturation_pct": 89.4,
+      "polygon": [
+        [76.1480, 11.5330],
+        [76.1630, 11.5330],
+        [76.1645, 11.5420],
+        [76.1488, 11.5425],
+        [76.1480, 11.5330]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444419",
+      "code": "HZ-MEPPADI-TOWN-SLIP",
+      "name": "Meppadi Town Periphery Mass Movement Zone",
+      "hazard_type": "landslide",
+      "severity": "warning",
+      "rainfall_24h_mm": 155.0,
+      "slope_saturation_pct": 76.8,
+      "polygon": [
+        [76.1240, 11.5480],
+        [76.1360, 11.5480],
+        [76.1375, 11.5570],
+        [76.1248, 11.5574],
+        [76.1240, 11.5480]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444420",
+      "code": "HZ-KALPETTA-EAST-INUNDATION",
+      "name": "Kalpetta Eastern Paddy Field Inundation Zone",
+      "hazard_type": "waterlogging",
+      "severity": "warning",
+      "rainfall_24h_mm": 132.0,
+      "slope_saturation_pct": 65.0,
+      "polygon": [
+        [76.0900, 11.6050],
+        [76.1050, 11.6050],
+        [76.1065, 11.6160],
+        [76.0910, 11.6163],
+        [76.0900, 11.6050]
+      ]
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444421",
+      "code": "HZ-SULTHAN-BATHERY-SLIP",
+      "name": "Sulthan Bathery Eastern Ghat Slope Slip",
+      "hazard_type": "landslide",
+      "severity": "high",
+      "rainfall_24h_mm": 168.0,
+      "slope_saturation_pct": 84.0,
+      "polygon": [
+        [76.2700, 11.6430],
+        [76.2850, 11.6430],
+        [76.2870, 11.6540],
+        [76.2710, 11.6545],
+        [76.2700, 11.6430]
+      ]
+    }
+  ],
+  "plan_v1": {
+    "id": "55555555-5555-5555-5555-555555555501",
+    "plan_code": "AEGIS-PLAN-WAYANAD-V1",
+    "version": 1,
+    "status": "approved",
+    "total_evacuees": 120,
+    "approved_by": "District Collector / Chairman, DDMA Wayanad",
+    "decision_context": {
+      "rationale": "Baseline preventive evacuation for Chooralmala (120 people) allocated to Meppadi Community Hall (Alpha) along primary transit corridor R1.",
+      "saturation_pct": 94.2,
+      "rainfall_24h_mm": 204.0,
+      "statutory_concurrence": true,
+      "model_confidence": "HIGH"
+    },
+    "assignments": [
+      {
+        "id": "66666666-6666-6666-6666-666666666601",
+        "habitation_code": "HAB-CHOORALMALA",
+        "shelter_code": "SH-ALPHA",
+        "route_code": "R1",
+        "allocated_population": 120,
+        "priority_order": 1
+      }
+    ]
+  }
+}

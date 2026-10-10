@@ -48,3 +48,16 @@ $RECYCLE.BIN/
 
 # TypeScript cache
 *.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Archives & Temporary Backups
+*.zip
+Frontend.zip
+New folder/
+New folder.zip
+
